@@ -211,6 +211,7 @@ app.Collections.commande = Backbone.Collection.extend({
             });
             // on vient de charger une commande. Elle devient donc active
             app.infos.set('commandeId', id);
+            alert('Commande chargée');
         });
     },
     enregister: function(table_id) {
@@ -229,7 +230,7 @@ app.Collections.commande = Backbone.Collection.extend({
             // Il faudra lancer l'impression du ticket ici
             success: function() {
                 app.infos.annuler();
-                alert('La commande a été enregistrée');
+                alert('Commande enregistrée');
             },
         });
     },
@@ -249,7 +250,7 @@ app.Collections.commande = Backbone.Collection.extend({
             // Il faudra lancer l'impression du ticket ici
             success: function() {
                 app.infos.annuler();
-                alert('La commande a été modifiée');
+                alert('Commande modifée');
             },
 
         });
@@ -261,7 +262,7 @@ app.Collections.commande = Backbone.Collection.extend({
             var url = app.config.url + '/commande/archiver/commande/' + app.infos.get('commandeId');
         } else {
             var url = app.config.url + '/save/commande/' + app.infos.get('tableId');
-        }
+        };
         if (type === -1) {
             app.infos.set({
                 cash: app.views.articlesCommandes['total']
@@ -278,7 +279,7 @@ app.Collections.commande = Backbone.Collection.extend({
             app.infos.set({
                 statut: 5
             });
-        }
+        };
         // on envoit les données pour enregistrer la commande
         $.ajax({
             type: 'POST',
@@ -297,6 +298,9 @@ app.Collections.commande = Backbone.Collection.extend({
             },
             success: function() {
                 app.infos.annuler();
+            },
+            error: function() {
+                console.log('error pour encaisser');
             }
         });
     },
