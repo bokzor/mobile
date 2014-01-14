@@ -11,8 +11,8 @@ var app = {
     routes: {},
     config: {
         protocol: 'http://',
-        url: 'http://192.168.1.6',
-        ip: '192.168.1.6',
+        url: 'http://liveorder.eu',
+        ip: 'liveorder.eu',
     },
 
     init: function() {
