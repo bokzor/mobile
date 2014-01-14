@@ -330,6 +330,8 @@ app.Views.ModalView = Backbone.View.extend({
     },
     encaisserOk: function(e) {
         var type = $(e.target).data('type');
+        console.log(type);
+        console.log(app.infos);
         app.collections.commande.encaisser(type);
         this.close();
 
