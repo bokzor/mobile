@@ -135,11 +135,11 @@ app.Views.ArticleView = Backbone.View.extend({
     },
     initialize: function() {
         // tab pour touch click pour desktop
-        //this.$el.on('click', 'a', this.addArticle);
     },
     events: {
         'click a': 'addArticle'
     },
+
     addArticle: function(e) {
         var id = $(e.currentTarget).data("id_article");
         app.collections.commande.addArticleId(id);

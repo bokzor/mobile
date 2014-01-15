@@ -10,6 +10,8 @@ head.js(
     'js/mobile/libs/fastclick.js',
     'js/mobile/app.js',
     'js/mobile/app/models/models.js',
+    'js/mobile/app/models/user.js',
+    'js/mobile/app/models/commande.js',
     'js/mobile/app/views/views.js',
     'js/mobile/app/views/snap.js',
     'js/mobile/app/views/commande.js',

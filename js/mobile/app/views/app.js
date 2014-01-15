@@ -9,6 +9,9 @@ app.Views.App = Backbone.View.extend({
         '</div>' +
         '<div class="content">' +
         '</div>'),
+    events: {
+        "input #recherche": "recherche",
+    },
     recherche: function(e) {
         app.collections.articles.recherche($(e.target).val());
         console.log('recherche en cours');
@@ -25,7 +28,7 @@ app.Views.App = Backbone.View.extend({
     },
     initialize: function() {
         console.log('new app');
-        this.$el.find('#recherche').on('input', this.recherche);
+        // this.$el.find('#recherche').on('input', this.recherche);
         this.render();
 
     },
