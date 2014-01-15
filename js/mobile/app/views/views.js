@@ -135,39 +135,15 @@ app.Views.ArticleView = Backbone.View.extend({
     },
     initialize: function() {
         // tab pour touch click pour desktop
-        this.$el.on('click', 'a', this.addArticle);
+        //this.$el.on('click', 'a', this.addArticle);
     },
     events: {
-        // si on clic sur l'article on le rajoute dans articleCommande
-        // 'tap a' : 'addArticle'
-    },
-    recherche: function(e) {
-
+        'click a': 'addArticle'
     },
     addArticle: function(e) {
         var id = $(e.currentTarget).data("id_article");
-        var article = app.collections.articles.findWhere({
-            'id_article': id
-        });
-        // on recherche si l'article est déja la :
-        var articleCommande = app.collections.commande.findWhere({
-            'id_article': id
-        });
+        app.collections.commande.addArticleId(id);
 
-        // si il n'existe pas on cree l'article
-        if (articleCommande === undefined) {
-            var articleCommande = {
-                id_article: id,
-                name: article.get('name'),
-                prix: article.get('prix'),
-            };
-            app.collections.commande.add(articleCommande);
-        } else {
-            //on incremente le count
-            articleCommande.set({
-                count: articleCommande.get('count') + 1
-            });
-        }
     }
 });
 
@@ -331,7 +307,6 @@ app.Views.ModalView = Backbone.View.extend({
     encaisserOk: function(e) {
         var type = $(e.target).data('type');
         console.log(type);
-        console.log(app.infos);
         app.collections.commande.encaisser(type);
         this.close();
 

@@ -155,7 +155,6 @@ app.Models.articleCommande = Backbone.Model.extend({
         })
     },
     toggleActive: function() {
-        console.log('salut');
         if (this.get('etat') === '') {
             this.set({
                 etat: 'active'
@@ -172,6 +171,24 @@ app.Models.articleCommande = Backbone.Model.extend({
 app.Collections.commande = Backbone.Collection.extend({
     model: app.Models.articleCommande,
     initialize: function() {},
+    count: function() {
+        console.log('count');
+        var total = 0;
+        app.collections.commande.each(function(article) {
+            var articlePrix = parseFloat(article.get('prix'));
+            var supplements = article.get('supplements');
+            var count = article.get('count');
+            var prix_supplement = 0;
+            if (supplements != undefined) {
+                $.each(supplements, function(i, supplement) {
+                    var prix_supplement = parseFloat(supplement['fois_prix']) * parseFloat(articlePrix) - parseFloat(articlePrix) + parseFloat(supplement['plus_prix']);
+                    articlePrix += prix_supplement;
+                });
+            }
+            total += articlePrix.toFixed(2) * count;
+        });
+        return total;
+    },
     chargerTable: function(table_id) {
         this.reset();
         url = app.config.url + '/get/commande/table_id/' + table_id + '.json';
@@ -211,7 +228,6 @@ app.Collections.commande = Backbone.Collection.extend({
             });
             // on vient de charger une commande. Elle devient donc active
             app.infos.set('commandeId', id);
-            alert('Commande chargée');
         });
     },
     enregister: function(table_id) {
@@ -230,7 +246,7 @@ app.Collections.commande = Backbone.Collection.extend({
             // Il faudra lancer l'impression du ticket ici
             success: function() {
                 app.infos.annuler();
-                alert('Commande enregistrée');
+                alert('La commande a été enregistrée');
             },
         });
     },
@@ -250,7 +266,7 @@ app.Collections.commande = Backbone.Collection.extend({
             // Il faudra lancer l'impression du ticket ici
             success: function() {
                 app.infos.annuler();
-                alert('Commande modifée');
+                alert('La commande a été modifiée');
             },
 
         });
@@ -262,24 +278,27 @@ app.Collections.commande = Backbone.Collection.extend({
             var url = app.config.url + '/commande/archiver/commande/' + app.infos.get('commandeId');
         } else {
             var url = app.config.url + '/save/commande/' + app.infos.get('tableId');
-        };
+        }
         if (type === -1) {
+            console.log('commande cash');
             app.infos.set({
-                cash: app.views.articlesCommandes['total']
+                cash: app.collections.commande.count()
             })
         }
         // on a encaisse directement le compte juste
         else if (type === -2) {
+            console.log('commande bacontact')
             app.infos.set({
-                bancontact: app.views.articlesCommandes['total']
+                bancontact: app.collections.commande.count()
             })
         }
         // on offre la commande
         else if (type === -3) {
+            console.log('commande offerte');
             app.infos.set({
                 statut: 5
             });
-        };
+        }
         // on envoit les données pour enregistrer la commande
         $.ajax({
             type: 'POST',
@@ -298,9 +317,6 @@ app.Collections.commande = Backbone.Collection.extend({
             },
             success: function() {
                 app.infos.annuler();
-            },
-            error: function() {
-                console.log('error pour encaisser');
             }
         });
     },
@@ -320,7 +336,19 @@ app.Collections.commande = Backbone.Collection.extend({
         } else {
             app.collections.commande.add(article);
         }
+
     },
+    addArticleId: function(id) {
+        var article = app.collections.articles.findWhere({
+            'id_article': id
+        });
+        var article = {
+            'prix': article.get('prix'),
+            'name': article.get('name'),
+            'id_article': article.get('id_article'),
+        };
+        app.collections.commande.addArticle(article);
+    }
 });
 
 
@@ -363,16 +391,14 @@ app.Collections.commandeLive = Backbone.Collection.extend({
                 }
                 if (app.collections.commandeLive.get(data[i]['id']) == undefined) {
                     app.collections.commandeLive.add(commande);
-                    if (data[i]['server_id'] !== app.models.infos.get('serverId')) {
+                    if (data[i]['server_id'] !== app.infos.get('serverId')) {
                         var titleNotif = 'Nouvelle commande';
-                        alert(titleNotif);
                         new_order = true;
                     }
                 } else {
                     commandeLive = app.collections.commandeLive.get(data[i]['id']);
                     if (commandeLive.get('statut_id') != data[i]['statut_id']) {
                         var titleNotif = 'Commande prête';
-                        alert(titleNotif);
                         ready_order = true;
                     }
                     commandeLive.set({
