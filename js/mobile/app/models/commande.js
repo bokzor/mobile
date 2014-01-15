@@ -192,6 +192,7 @@ app.Collections.commande = Backbone.Collection.extend({
         } else {
             app.collections.commande.add(article);
         }
+        navigator.notification.vibrate(100);
 
     },
     addArticleId: function(id) {
