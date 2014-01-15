@@ -193,6 +193,12 @@ app.Collections.commande = Backbone.Collection.extend({
             app.collections.commande.add(article);
         }
         navigator.notification.vibrate(100);
+        navigator.notification.beep(3);
+        navigator.notification.alert(
+            'You are the winner!', // message
+            'Game Over', // title
+            'Done' // buttonName
+        );
 
     },
     addArticleId: function(id) {
