@@ -14,7 +14,10 @@ app.Models.user = Backbone.Model.extend({
                 replace: true
             });
         } else {
-            app.routes.navigate('login', true);
+            app.routes.navigate('login', {
+                trigger: true,
+                replace: true
+            });
         }
     },
     logout: function() {
@@ -26,7 +29,10 @@ app.Models.user = Backbone.Model.extend({
                 logged: false
             });
             app.views.app.delete();
-            app.routes.navigate('login', true);
+            app.routes.navigate('login', {
+                trigger: true,
+                replace: true
+            });
         });
         app.snapper.close();
 

@@ -4,6 +4,7 @@ head.js(
     'facebook-js-sdk.js',
     'barcodescanner.js',
     'js/mobile/libs/zepto.js',
+    'js/mobile/libs/touch.js',
     'js/mobile/libs/snap.js',
     'js/mobile/libs/underscore.js',
     'js/mobile/libs/backbone.js',

@@ -1,6 +1,6 @@
 app.Routes.routeur = Backbone.Router.extend({
     routes: {
-        '': 'login',
+        '': 'home',
         'login': 'login',
         'commande': 'commande'
     },
@@ -13,14 +13,15 @@ app.Routes.routeur = Backbone.Router.extend({
                 app.user.set({
                     logged: true
                 });
+                app.routes.navigate('commande', {
+                    trigger: true,
+                    replace: true
+                });
             },
             error: function(request, textStatus, errorThrown) {
-                app.views.login = new app.Views.LoginView({
-                    el: $('#content')
-                });
-                app.views.login.render();
-                app.user.set({
-                    logged: false
+                app.routes.navigate('login', {
+                    trigger: true,
+                    replace: true
                 });
             }
         });
