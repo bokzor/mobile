@@ -137,8 +137,8 @@ app.Views.ArticleView = Backbone.View.extend({
         // tab pour touch click pour desktop
     },
     events: {
-        'singleTap a': 'addArticle',
-        'doubleTap a': 'options'
+        'tap a': 'addArticle',
+        'longTap a': 'options'
     },
     options: function() {
         console.log('long');
@@ -192,6 +192,9 @@ app.Views.BarreActionView = Backbone.View.extend({
         "click #commander-action": "commander",
     },
     annuler: function() {
+        if (app.collections.commande.length === 0) {
+            app.snapper.close();
+        }
         app.infos.annuler();
     },
     render: function() {
@@ -202,14 +205,13 @@ app.Views.BarreActionView = Backbone.View.extend({
         $('body').append(this.$el);
     },
     commander: function() {
-        new app.Views.ModalView().commanderOptions();
-
+        new app.Views.PopupView().commanderOptions();
     },
     encaisser: function() {
-        new app.Views.ModalView().encaisser();
+        new app.Views.PopupView().encaisser();
     },
     charger: function() {
-        new app.Views.ModalView().charger();
+        new app.Views.PopupView().charger();
     },
 })
 
