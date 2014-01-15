@@ -141,7 +141,7 @@ app.Views.ArticleView = Backbone.View.extend({
         'longTap a': 'options'
     },
     options: function() {
-        alert('longTap');
+        console.log('long');
     },
 
     addArticle: function(e) {
