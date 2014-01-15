@@ -16,8 +16,8 @@ var app = {
     },
 
     init: function() {
-        document.oncontextmenu = new Function("return false");
-        document.onselectstart = new Function("return false");
+        //document.oncontextmenu = new Function("return false");
+        //document.onselectstart = new Function("return false");
         this.routes = new this.Routes.routeur();
         this.user = new this.Models.user();
 
