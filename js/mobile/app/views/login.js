@@ -1,8 +1,5 @@
 app.Views.LoginView = Backbone.View.extend({
-    template: _.template('<div id="bg">' +
-        '<img src="img/login.png" alt="">' +
-        '</div>' +
-        '<form id="loginForm">' +
+    template: _.template('<form id="loginForm">' +
         '<img src="img/LiveOrder.png" alt="">' +
         '<input id="username" type="text" placeholder="Adresse Email">' +
         '<input id="password" type="password" placeholder="Mot de passe">' +

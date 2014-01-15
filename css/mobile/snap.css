@@ -73,14 +73,14 @@ html, body {
 }
 
 .statut-1{
-  background-color: #c0392b;
+  background-color: rgba(192, 57, 43, 0.4);
 }
 .statut-2{
-  background-color: #2ecc71;
+  background-color: rgba(46, 204, 113, 0.4);
 }
 .statut-3{
-  background-color: #3498db;
+  background-color: rgba(52, 152, 219, 0.4)
 }
 .statut-4{
-  background-color: #3498db;
+  background-color: rgba(52, 152, 219, 0.4)
 }

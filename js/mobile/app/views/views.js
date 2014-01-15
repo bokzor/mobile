@@ -138,7 +138,7 @@ app.Views.ArticleView = Backbone.View.extend({
     },
     events: {
         'singleTap a': 'addArticle',
-        'longTap a': 'options'
+        'doubleTap a': 'options'
     },
     options: function() {
         console.log('long');
@@ -169,7 +169,7 @@ app.Views.BarreActionView = Backbone.View.extend({
         '<li  class="tab-item">' +
         '<a id="commander-action">' +
         '<i class="tab-icon icon-ok"></i>' +
-        '<div class="tab-label">Commander</div>' +
+        '<div class="tab-label"><% if(app.infos.get("commandeId")=== -1){%>Commander<% } else { %>Modifier<% } %></div>' +
         '</a>' +
         '</li>' +
         '<li class="tab-item">' +
@@ -196,10 +196,10 @@ app.Views.BarreActionView = Backbone.View.extend({
     },
     render: function() {
         this.$el.html(this.barreAction());
-        $('body').append(this.$el);
     },
     initialize: function() {
         this.render();
+        $('body').append(this.$el);
     },
     commander: function() {
         new app.Views.ModalView().commanderOptions();

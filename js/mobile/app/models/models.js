@@ -41,11 +41,20 @@ app.Models.infos = Backbone.Model.extend({
         page: '/',
         bancontact: 0,
         cash: 0,
-        statut: 0,
+        statutId: 0,
+    },
+    initialize: function() {
+        this.on('change', this.barreAction);
     },
     annuler: function() {
         app.collections.commande.reset();
         this.clear().set(this.defaults);
+    },
+    barreAction: function() {
+        if (this.hasChanged("commandeId")) {
+            app.views.barreAction.render();
+            console.log('change commandeId');
+        }
     }
 });
 
@@ -107,7 +116,7 @@ app.Collections.commandeLive = Backbone.Collection.extend({
                 }
             }
             if (new_order === true || ready_order === true) {
-                navigator.notification.vibrate(500);
+                navigator.notification.beep(1);
             }
 
         });

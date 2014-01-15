@@ -84,6 +84,7 @@ app.Collections.commande = Backbone.Collection.extend({
             });
             // on vient de charger une commande. Elle devient donc active
             app.infos.set('commandeId', id);
+            app.infos.set('statutId', data['statut_commande']);
         });
     },
     enregister: function(table_id) {
@@ -107,25 +108,32 @@ app.Collections.commande = Backbone.Collection.extend({
         });
     },
     modifier: function() {
-        $.ajax({
-            type: 'POST',
-            xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
-            url: app.config.url + '/modif/commande',
-            data: {
-                table_id: app.infos.get('tableId'),
-                commande: app.collections.commande.toJSON(),
-                commande_id: app.infos.get('commandeId'),
-            },
-            // Il faudra lancer l'impression du ticket ici
-            success: function() {
-                app.infos.annuler();
-                alert('La commande a été modifiée');
-            },
+        if (app.infos.get('statutId') !== 0 && app.infos.get('statutId') !== 1) {
+            console.log(app.infos.get('statutId'));
 
-        });
+            alert('Vous ne pouvez plus modifier la commande');
+        } else {
+            console.log(app.infos.get('statutId'));
+            $.ajax({
+                type: 'POST',
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                url: app.config.url + '/modif/commande',
+                data: {
+                    table_id: app.infos.get('tableId'),
+                    commande: app.collections.commande.toJSON(),
+                    commande_id: app.infos.get('commandeId'),
+                },
+                // Il faudra lancer l'impression du ticket ici
+                success: function() {
+                    app.infos.annuler();
+                    alert('La commande a été modifiée');
+                },
+
+            });
+        }
     },
     encaisser: function(type) {
         if (app.infos.get('tableId') > 0) {
@@ -192,13 +200,6 @@ app.Collections.commande = Backbone.Collection.extend({
         } else {
             app.collections.commande.add(article);
         }
-        navigator.notification.vibrate(100);
-        navigator.notification.beep(3);
-        navigator.notification.alert(
-            'You are the winner!', // message
-            'Game Over', // title
-            'Done' // buttonName
-        );
 
     },
     addArticleId: function(id) {

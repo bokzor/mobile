@@ -45,12 +45,11 @@
 body{
 	background: #34495e;
 	font-family: "Helvetica Neue",HelveticaNeue,"Helvetica-Neue",Helvetica,"BBAlpha Sans",sans-serif;
+	background-image:url(/img/login.png);
+
 	}
 #content{
-	-webkit-box-shadow: 0 0 10px #000;
-	-moz-box-shadow: 0 0 10px #000;
-	box-shadow: 0 0 10px #000;
-	background: #fff;
+
 	height: 100%;
 	position: relative;
 	z-index: 10;
