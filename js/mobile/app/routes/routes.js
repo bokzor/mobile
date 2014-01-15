@@ -43,6 +43,8 @@ app.Routes.routeur = Backbone.Router.extend({
             app.views.app = new app.Views.App({
                 el: $('#content')
             });
+        } else {
+            app.views.app.render();
         }
 
     }

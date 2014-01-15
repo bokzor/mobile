@@ -1,8 +1,8 @@
 head.js(
     'cordova.js',
     'cdv-plugin-fb-connect.js',
-    'facebook-js-sdk.js',
-    'barcodescanner.js',
+        'facebook-js-sdk.js',
+        'barcodescanner.js',
     'js/mobile/libs/zepto.js',
     'js/mobile/libs/touch.js',
     'js/mobile/libs/snap.js',

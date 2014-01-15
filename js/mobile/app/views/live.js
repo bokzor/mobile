@@ -39,14 +39,18 @@ app.Views.CommandesLiveView = Backbone.View.extend({
         "click a.commande": 'chargerCommande',
     },
     initialize: function() {
-        this.model.on('change:statut_id', this.render, this);
+        this.model.on('change:statut_id', this.alertStatut, this);
         this.model.on('click', this.toggleActive, this);
-
     },
     chargerCommande: function(e) {
         var id = $(e.currentTarget).data("id_commande");
         app.collections.commande.chargerId(id);
     },
+    alertStatut: function() {
+        this.render();
+        navigator.notification.beep(1);
+
+    }
 
 
 });
