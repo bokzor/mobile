@@ -36,5 +36,7 @@ app.Views.App = Backbone.View.extend({
         app.snapper.disable();
         app.views.snap.remove();
         app.views.barreAction.remove();
+        app.collections.commandeLive.close();
+        app.collections.commandeLive.remove();
     }
 })

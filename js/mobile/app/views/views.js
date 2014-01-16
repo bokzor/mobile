@@ -46,9 +46,7 @@ app.Views.CatsView = Backbone.View.extend({
         this.attributes['level'] = 0;
         this.render();
     },
-    initialize: function() {
-        app.views.modal = new app.Views.ModalView();
-    }
+
 });
 
 
@@ -140,8 +138,11 @@ app.Views.ArticleView = Backbone.View.extend({
         'tap a': 'addArticle',
         'longTap a': 'options'
     },
-    options: function() {
-        console.log('long');
+    options: function(e) {
+        app.snapper.close();
+        var id = $(e.currentTarget).data("id_article");
+        new app.Views.PopupView().optionsCommande(id);
+
     },
 
     addArticle: function(e) {
@@ -150,7 +151,6 @@ app.Views.ArticleView = Backbone.View.extend({
 
     }
 });
-
 
 
 
@@ -205,116 +205,15 @@ app.Views.BarreActionView = Backbone.View.extend({
         $('body').append(this.$el);
     },
     commander: function() {
+        app.snapper.close();
         new app.Views.PopupView().commanderOptions();
     },
     encaisser: function() {
+        app.snapper.close();
         new app.Views.PopupView().encaisser();
     },
     charger: function() {
+        app.snapper.close();
         new app.Views.PopupView().charger();
     },
-})
-
-
-
-app.Views.ModalView = Backbone.View.extend({
-    className: 'modal active',
-    templateCommanderTableId: _.template('<div><input type="number" placeholder="Numéro de table">' +
-        '<a id="valider-action-commander" class="button button-block">Valider</a>' +
-        '<a id="fermer-modale" class="button button-block">Annuler</a></div>'),
-
-    templateCommanderOptions: _.template(
-        '<div><a id="commander-tableId" class="button button-block">Numéro de table</a>' +
-        '<a id="commander-scan" class="button button-block">Scanner le code</a>' +
-        '<a id="fermer-modale" class="button button-block">Annuler</a></div>'),
-
-
-    templateEncaisser: _.template('<div><a data-type="-1" id="encaisser-cash" class="button button-block">Cash</a> ' +
-        '<a id="encaisser-bancontact" data-type="-2" class="button button-block">Bancontact</a>' +
-        '<a id="encaisser-offrir" data-type="-3" class="button button-block">Offrir</a>' +
-        '<a id="fermer-modale" class="button button-block">Annuler</a></div>'),
-
-    templateCharger: _.template('<div><input type="number" placeholder="Numéro de table">' +
-        '<a id="valider-action-charger" class="button button-block">Valider</a>' +
-        '<a id="fermer-modale" class="button button-block">Annuler</a></div>'),
-
-    events: {
-        "click #fermer-modale": "close",
-        "click #valider-action-charger": "chargerOk",
-        "click #valider-action-commander": "commanderOk",
-        "click #encaisser-cash": "encaisserOk",
-        "click #encaisser-offrir": "encaisserOk",
-        "click #encaisser-bancontact": "encaisserOk",
-        "click #commander-tableId": "commanderTableId",
-        "click #commander-scan": "commanderScan",
-
-
-    },
-
-    commanderTableId: function() {
-        this.$el.html(this.templateCommanderTableId());
-        $('#content').after(this.el);
-        this.$el.find('input').focus();
-    },
-    commanderScan: function() {
-        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-
-        scanner.scan(function(result) {
-            app.collections.commande.enregister(result.text);
-        }, function(error) {
-            // notif scan failed.
-            this.commanderTableId();
-            console.log("Scanning failed: ", error);
-        });
-
-        this.close();
-    },
-    commanderOptions: function() {
-        if (app.infos.get('commandeId') !== -1) {
-            app.collections.commande.modifier();
-        } else {
-            this.$el.html(this.templateCommanderOptions());
-            $('#content').after(this.el);
-            this.$el.find('input').focus();
-        }
-    },
-    encaisser: function() {
-        this.$el.html(this.templateEncaisser());
-        $('#content').after(this.el);
-    },
-    charger: function(e) {
-        this.$el.html(this.templateCharger());
-        $('#content').after(this.el);
-        var input = this.$el.find('input');
-        input.focus();
-    },
-    render: function() {
-        this.$el.toggleClass('active');
-    },
-    close: function() {
-        console.log('close modal');
-        this.$el.toggleClass('active');
-        this.remove();
-    },
-    chargerOk: function() {
-        var input = this.$el.find('input');
-        app.collections.commande.chargerTable(input.val());
-        app.snapper.open('right');
-        this.close();
-    },
-    commanderOk: function() {
-        var input = this.$el.find('input');
-        // pas de table id ni de commande , ca veut dire que c'est une nouvelle commande et pas une modif
-        if (app.infos.get('commandeId') === -1) {
-            app.collections.commande.enregister(input.val());
-        }
-        this.close();
-    },
-    encaisserOk: function(e) {
-        var type = $(e.target).data('type');
-        console.log(type);
-        app.collections.commande.encaisser(type);
-        this.close();
-
-    }
 })

@@ -151,7 +151,7 @@ app.Collections.commande = Backbone.Collection.extend({
         }
         // on a encaisse directement le compte juste
         else if (type === -2) {
-            console.log('commande bacontact')
+            console.log('commande bancontact')
             app.infos.set({
                 bancontact: app.collections.commande.count()
             })
@@ -180,6 +180,7 @@ app.Collections.commande = Backbone.Collection.extend({
                 statut_id: app.infos.get('statut'),
             },
             success: function() {
+                alert('La commande a été finalisée');
                 app.infos.annuler();
             }
         });
@@ -212,5 +213,24 @@ app.Collections.commande = Backbone.Collection.extend({
             'id_article': article.get('id_article'),
         };
         app.collections.commande.addArticle(article);
+    },
+    addArticleOptions: function(options) {
+        var count = options['count'];
+        if (isNaN(count) || count === '') {
+            count = 1;
+        }
+        var id = options['id'];
+        var article = app.collections.articles.findWhere({
+            'id_article': id
+        });
+        var article = {
+            'prix': article.get('prix'),
+            'name': article.get('name'),
+            'id_article': article.get('id_article'),
+            'comment': options.comment
+        };
+        for (i = 0; i < count; i++) {
+            app.collections.commande.addArticle(article);
+        }
     }
 });

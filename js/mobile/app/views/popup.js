@@ -19,6 +19,11 @@ app.Views.PopupView = Backbone.View.extend({
 
     templateCharger: _.template('<ul class="list"><li><input type="number" placeholder="Numéro de table"></li></ul>'),
 
+    templateOptionsCommande: _.template('<ul class="list">' +
+        '<li><input data-id="<%= id %>" type="number" placeholder="Nombre d\'articles"></li>' +
+        '<li>Ajouter un commentaire <textarea id="comment"></textarea></ul>'),
+
+
     events: {
         "click #fermer-pop": "close",
         "click #valider-action-charger": "chargerOk",
@@ -28,6 +33,8 @@ app.Views.PopupView = Backbone.View.extend({
         "click #encaisser-bancontact": "encaisserOk",
         "click #commander-tableId": "commanderTableId",
         "click #commander-scan": "commanderScan",
+        "click #valider-options": "optionsOk",
+
     },
 
     commanderTableId: function() {
@@ -40,6 +47,30 @@ app.Views.PopupView = Backbone.View.extend({
         this.$el.html(this.template(options));
         $('#content').prepend(this.el);
         this.$el.find('input').focus();
+    },
+    optionsCommande: function(id) {
+        console.log(id);
+        var object = new Array();
+        object['id'] = id;
+        var options = {
+            callback: 'valider-options',
+            contenu: this.templateOptionsCommande(object),
+            titre: '',
+        };
+        this.$el.html(this.template(options));
+        $('#content').prepend(this.el);
+        this.$el.find('input').focus();
+    },
+    optionsOk: function() {
+        var id = this.$el.find('input').data('id');
+        var count = this.$el.find('input').val();
+        var comment = this.$el.find('textarea').val();
+        var options = new Array();
+        options['comment'] = comment;
+        options['count'] = count;
+        options['id'] = id;
+        app.collections.commande.addArticleOptions(options);
+        this.close();
     },
     commanderScan: function() {
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
@@ -114,5 +145,6 @@ app.Views.PopupView = Backbone.View.extend({
         console.log(type);
         app.collections.commande.encaisser(type);
         this.close();
-    }
+    },
+
 });
