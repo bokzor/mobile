@@ -1,50 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-    <widget xmlns = "http://www.w3.org/ns/widgets"
-        xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "eu.liveorder"
-        versionCode=""
-        version   = "0.1.0">
-        <name>LiveOrder</name>
-        <description>
-        </description>
-        <author href="http://liveorder.eu" email="adrien@bokor.be">
-Adrien Bokor
-        </author>
-        <preference name="phonegap-version" value="3.1.0" />
-        <preference name="orientation" value="portrait" />
-        <preference name="target-device" value="universal" />
-        <preference name="fullscreen" value="true" />
-        <preference name="webviewbounce" value="true" />
-        <preference name="prerendered-icon" value="true" />
-        <preference name="stay-in-webview" value="true" />
-        <preference name="ios-statusbarstyle" value="default" />
-        <preference name="detect-data-types" value="true" />
-        <preference name="exit-on-suspend" value="true" />
-        <preference name="show-splash-screen-spinner" value="true" />
-        <preference name="auto-hide-splash-screen" value="true" />
-        <preference name="disable-cursor" value="true" />
-        <preference name="android-minSdkVersion" value="9" />
-        <preference name="android-targetSdkVersion" value="14" />
-        <preference name="android-installLocation" value="internalOnly" />
-        <preference name="splash-screen-duration" value="5000" />
-        <preference name="load-url-timeout" value="20000" />
-        <preference name="KeepRunning" value="true"/>
-        <preference name="DisallowOverscroll" value="false"/>
-        <gap:platform name="ios" />
-        <gap:platform name="android" />
-        <gap:platform name="winphone" />
-        <feature name="http://api.phonegap.com/1.0/notification"/>
-        <feature name="http://api.phonegap.com/1.0/device"/>
-        <gap:plugin name="org.apache.cordova.dialogs"  />
-        <gap:plugin name="org.apache.cordova.splashscreen"  />
-        <gap:splash src="splash.png" />
-        <icon src="icon.png" />
-
-        <access origin="*" subdomains="true"  />
-        <gap:plugin name="com.phonegap.plugins.barcodescanner" />
-        <gap:plugin name="com.phonegap.plugins.facebookconnect" >
-            <param name="APP_ID" value="1444408885775635" /> 
-            <param name="APP_NAME" value="3a73a90e9014bd7c7493108a45345ceb" /> 
-        </gap:plugin>
-
-    </widget>
+<?xml version="1.0" encoding="UTF-8"?>	<widget xmlns = "http://www.w3.org/ns/widgets"		xmlns:gap = "http://phonegap.com/ns/1.0"		id        = "eu.liveorder"		versionCode=""		version   = "0.1.0">		<name>LiveOrder</name>		<description>		</description>		<author href="http://liveorder.eu" email="adrien@bokor.be">Adrien Bokor		</author>		<preference name="phonegap-version" value="3.1.0" />		<preference name="orientation" value="portrait" />		<preference name="target-device" value="universal" />		<preference name="fullscreen" value="true" />		<preference name="webviewbounce" value="true" />		<preference name="prerendered-icon" value="true" />		<preference name="stay-in-webview" value="true" />		<preference name="ios-statusbarstyle" value="default" />		<preference name="detect-data-types" value="true" />		<preference name="exit-on-suspend" value="true" />		<preference name="show-splash-screen-spinner" value="true" />		<preference name="auto-hide-splash-screen" value="true" />		<preference name="disable-cursor" value="true" />		<preference name="android-minSdkVersion" value="14" />		<preference name="android-targetSdkVersion" value="14" />		<preference name="android-installLocation" value="internalOnly" />		<preference name="splash-screen-duration" value="5000" />		<preference name="load-url-timeout" value="20000" />		<preference name="KeepRunning" value="true"/>		<preference name="DisallowOverscroll" value="false"/>		<gap:platform name="ios" />		<gap:platform name="android" />		<gap:platform name="winphone" />		<feature name="http://api.phonegap.com/1.0/notification"/>		<feature name="http://api.phonegap.com/1.0/device"/>		<gap:plugin name="org.apache.cordova.dialogs"  />		<gap:plugin name="org.apache.cordova.splashscreen"  />		<gap:splash src="splash.png" />		<access origin="*" subdomains="true"  />		<gap:plugin name="com.phonegap.plugins.barcodescanner" />		<gap:plugin name="com.phonegap.plugins.facebookconnect" >			<param name="APP_ID" value="1444408885775635" /> 			<param name="APP_NAME" value="3a73a90e9014bd7c7493108a45345ceb" /> 		</gap:plugin>	</widget>
