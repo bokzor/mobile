@@ -50,6 +50,7 @@ app.Models.user = Backbone.Model.extend({
                 });
             },
             error: function(request, textStatus, errorThrown) {
+                app.views.loader.remove();
                 app.user.set({
                     logged: false
                 });
@@ -92,6 +93,8 @@ app.Models.user = Backbone.Model.extend({
                                 this.set({
                                     logged: false
                                 });
+                                app.views.loader.remove();
+
                             }
                         });
                 }

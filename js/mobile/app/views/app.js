@@ -18,7 +18,8 @@ app.Views.App = Backbone.View.extend({
     },
     render: function() {
         console.log('render app');
-        app.views.loader.remove();
+        if (app.views.loader !== undefined)
+            app.views.loader.remove();
         this.$el.html(this.template());
         app.views.snap = new app.Views.SnapView();
         app.views.barreAction = new app.Views.BarreActionView();

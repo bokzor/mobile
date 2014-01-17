@@ -20,6 +20,7 @@ app.Views.LoginView = Backbone.View.extend({
         e.preventDefault();
         var username = this.$el.find('#username').val();
         var password = this.$el.find('#password').val();
+        app.views.loader = new app.Views.LoaderView();
         app.user.validerLogin(username, password);
     },
     loginFacebook: function(e) {
