@@ -1,7 +1,11 @@
 app.Views.LoaderView = Backbone.View.extend({
-    id: 'loader',
+    template: _.template('<div id="loader"></div>'),
+    id: 'loader-container',
+    render: function() {
+        $('body').prepend(this.$el.html(this.template()));
+    },
     initialize: function() {
-        $('body').prepend(this.$el);
+        this.render();
     }
 
 
