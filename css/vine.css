@@ -45,8 +45,11 @@
 body{
 	background: #34495e;
 	font-family: "Helvetica Neue",HelveticaNeue,"Helvetica-Neue",Helvetica,"BBAlpha Sans",sans-serif;
-	background-image:url(../img/login.png);
-
+ 	background: url(../img/login.png) no-repeat center center fixed;
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: cover;       
 	}
 #content{
 

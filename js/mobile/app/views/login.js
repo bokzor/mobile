@@ -6,7 +6,7 @@ app.Views.LoginView = Backbone.View.extend({
         '<input type="submit" id="valider-login" value="Se connecter">' +
         '</form>' +
         '<div class="black-overlay">' +
-        '<div id="login-facebook" class="facebook"><span>Login with Facebook</span></div>' +
+        '<div id="login-facebook" class="facebook"><span>Se connecter avec Facebook</span></div>' +
         '<span>S\'enregister</span>' +
         '</div>'),
     render: function() {
@@ -25,6 +25,7 @@ app.Views.LoginView = Backbone.View.extend({
     loginFacebook: function(e) {
         e.preventDefault();
         console.log('login with facebook');
+        app.views.loader = new app.Views.LoaderView();
         app.user.loginFacebook();
     },
 

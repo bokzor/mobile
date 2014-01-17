@@ -119,3 +119,20 @@ input[type="password"]:focus {
   font-size: 14px;
   line-height: 40px;
 }
+
+
+#loader {
+  position: absolute;
+  border: 1px solid transparent;
+  left: 50%;
+  top: 30%;
+  border-radius: 100%;
+  box-shadow: -50px 0 0 8px #aaeeff, -25px 25px 0 8px #ffeeaa, 0px 50px 0 8px #aaffaa, 25px 25px 0 8px #ffaaff, 50px 0 0 8px #aaaaaa, 25px -25px 0 8px #ddddaa, 0px -50px 0 8px #ddffaa, -25px -25px 0 8px #9999aa;
+  animation: loader 0.4s ease-in-out infinite;
+}
+
+@keyframes loader {
+  100% {
+    box-shadow: -25px 25px 0 8px #ffeeaa, 0px 50px 0 8px #aaffaa, 25px 25px 0 8px #ffaaff, 50px 0 0 8px #aaaaaa, 25px -25px 0 8px #ddddaa, 0px -50px 0 8px #ddffaa, -25px -25px 0 8px #9999aa, -50px 0 0 8px #aaeeff;
+  }
+}
