@@ -10,7 +10,7 @@ app.Views.SnapView = Backbone.View.extend({
     initialize: function() {
         this.render();
         app.snapper = new Snap({
-            element: document.getElementById('content')
+            element: document.getElementById('container-snap')
         });
     },
 

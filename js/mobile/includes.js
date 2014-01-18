@@ -28,7 +28,15 @@ head.js(
 );
 
 head.ready(function() {
+    function checkConnection() {
+        var networkState = navigator.connection.type;
+        if (networkState === 'Connection.NONE') {
+            alert('Merci de vous connecter au Wifi');
+        }
+    }
+
     document.addEventListener('deviceready', function() {
+        checkConnection();
         app.init()
         // on initialise les deux panels
         // on active le fast click pour le mobile
