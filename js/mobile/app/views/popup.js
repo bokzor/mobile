@@ -7,6 +7,18 @@ app.Views.PopupView = Backbone.View.extend({
         '<a id="<%= callback %>" class="button" >Ok</a>' +
         '</header> <%= contenu %>'),
 
+    templateCharger: _.template('<ul class="list">' +
+        '<li><a id="charger-client">Commandes d\'un client</a></li>' +
+        '<li><a id="charger-table">Commandes d\'une table</a></li></ul>'),
+
+    templateChargerTable: _.template('<ul class="list">' +
+        '<li><input type="number" placeholder="Numéro de table"></li>' +
+        '<li><a id="charger-table-qr">Scanner le QR code</a></li></ul>'),
+
+    templateChargerClient: _.template('<ul class="list">' +
+        '<li><a id="recherche-client">Recherche client</a></li>' +
+        '<li><a id="charger-client-qr">Scanner le QR code</a></li></ul>'),
+
     templateCommanderTableId: _.template('<ul class="list"><li><input type="number" placeholder="Numéro de table"></li></ul>'),
 
     templateCommanderOptions: _.template(
@@ -15,9 +27,10 @@ app.Views.PopupView = Backbone.View.extend({
 
     templateEncaisser: _.template('<ul class="list"><li><a data-type="-1" id="encaisser-cash">Cash</a></li>' +
         '<li><a id="encaisser-bancontact" data-type="-2" >Bancontact</a></li>' +
-        '<li><a id="encaisser-offrir" data-type="-3">Offrir</a></li>'),
+        '<li><a id="encaisser-offrir" data-type="-3">Offrir</a></li>' +
+        '<li><a id="encaisser-qr" data-type="-4">Scanner le QR code</a></li>'),
 
-    templateCharger: _.template('<ul class="list"><li><input type="number" placeholder="Numéro de table"></li></ul>'),
+
 
     templateOptionsCommande: _.template('<ul class="list">' +
         '<li><input data-id="<%= id %>" type="number" placeholder="Nombre d\'articles"></li>' +
@@ -26,14 +39,89 @@ app.Views.PopupView = Backbone.View.extend({
 
     events: {
         "click #fermer-pop": "close",
-        "click #valider-action-charger": "chargerOk",
+
+        "click #charger-client": "chargerClient",
+
+        "click #charger-table": "chargerTable",
+        "clicl #charger-table-qr": "chargerTableQR",
+        "click #valider-charger-table": "chargerTableOk",
+        "clicl #charger-client-qr": "chargerClientQR",
+        "clicl #recherche-client": "chargerClientRecheche",
+
         "click #valider-action-commander": "commanderOk",
         "click #encaisser-cash": "encaisserOk",
         "click #encaisser-offrir": "encaisserOk",
         "click #encaisser-bancontact": "encaisserOk",
+        "click #encaisser-qr": "encaisserQR",
         "click #commander-tableId": "commanderTableId",
         "click #commander-scan": "commanderScan",
         "click #valider-options": "optionsOk",
+
+    },
+    // affiche un choix entre table ou client
+    charger: function() {
+        var options = {
+            callback: '',
+            contenu: this.templateCharger(),
+            titre: '',
+
+        };
+        this.$el.html(this.template(options));
+        $('#content').prepend(this.el);
+        this.$el.find('input').focus();
+    },
+    // affiche un choix entre qr code et numéro de table
+    chargerTable: function() {
+        var options = {
+            callback: 'valider-charger-table',
+            contenu: this.templateChargerTable(),
+            titre: '',
+        };
+        this.$el.html(this.template(options));
+        $('#content').prepend(this.el);
+        this.$el.find('input').focus();
+    },
+    // valide l'input de la table
+    chargerTableOk: function() {
+        var input = this.$el.find('input');
+        app.collections.commande.chargerTable(input.val());
+        app.snapper.open('right');
+        this.close();
+    },
+    // valide le qr code de la table
+    chargerTableQR: function() {
+        scanner.scan(function(result) {
+            app.collections.commande.chargerTable(result.text);
+            app.snapper.open('right');
+        }, function(error) {
+            alert('Echec du scan');
+            console.log("Scanning failed: ", error);
+        });
+        this.close();
+    },
+    chargerClient: function() {
+        var options = {
+            callback: 'valider-charger-client',
+            contenu: this.templateChargerClient(),
+            titre: '',
+        };
+        this.$el.html(this.template(options));
+        $('#content').prepend(this.el);
+        this.$el.find('input').focus();
+    },
+    // valide le qr code de la table
+
+    chargerClientQR: function() {
+        scanner.scan(function(result) {
+            app.collections.commande.chargerClient(result.text);
+            app.snapper.open('right');
+        }, function(error) {
+            alert('Echec du scan');
+            console.log("Scanning failed: ", error);
+        });
+        this.close();
+    },
+    chargerClientRecheche: function() {
 
     },
 
@@ -111,25 +199,18 @@ app.Views.PopupView = Backbone.View.extend({
         $('#content').prepend(this.el);
     },
 
-    charger: function() {
-        var options = {
-            callback: 'valider-action-charger',
-            contenu: this.templateCharger(),
-            titre: '',
 
-        };
-        this.$el.html(this.template(options));
-        $('#content').prepend(this.el);
-        this.$el.find('input').focus();
-    },
-    close: function() {
-        console.log('close popup');
-        this.remove();
-    },
-    chargerOk: function() {
-        var input = this.$el.find('input');
-        app.collections.commande.chargerTable(input.val());
-        app.snapper.open('right');
+    encaisserQR: function() {
+        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
+        scanner.scan(function(result) {
+            app.collections.commande.enregister(result.text);
+        }, function(error) {
+            // notif scan failed.
+            app.collections.commande.encaisser(type);
+            console.log("Scanning failed: ", error);
+        });
+
         this.close();
     },
     commanderOk: function() {
@@ -145,6 +226,11 @@ app.Views.PopupView = Backbone.View.extend({
         console.log(type);
         app.collections.commande.encaisser(type);
         this.close();
+    },
+
+    close: function() {
+        console.log('close popup');
+        this.remove();
     },
 
 });

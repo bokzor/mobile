@@ -36,7 +36,7 @@ app.Routes.routeur = Backbone.Router.extend({
         app.views.login.render();
     },
     commande: function() {
-        console.log('route commande')
+        console.log('route commande');
         app.user.fetch();
         app.collections.articles.fetch();
         app.collections.categories.fetch();
@@ -48,6 +48,9 @@ app.Routes.routeur = Backbone.Router.extend({
             app.views.app.render();
         }
 
-    }
+    },
+    client: function() {
+        console.log('route client');
+    },
 
 });
