@@ -10,7 +10,7 @@ app.Views.SnapView = Backbone.View.extend({
     initialize: function() {
         this.render();
         app.snapper = new Snap({
-            element: document.getElementById('container-snap')
+            element: document.getElementById('content')
         });
     },
 
@@ -22,6 +22,7 @@ app.Views.SnapLeftView = Backbone.View.extend({
     id: 'left-drawer',
     menus: _.template('<ul class="list">' +
         '<li><a>Gestion des commandes</a></li>' +
+        '<li><a id="qr">Votre code QR </a></li>' +
         '<li><a id="lier-facebook">Lier son compte Facebook</a></li>' +
         '<li class="list-divider"></li>' +
         '<li><a id="logout">Se déconnecter</a></li>' +
@@ -29,6 +30,7 @@ app.Views.SnapLeftView = Backbone.View.extend({
     events: {
         'click #lier-facebook': 'facebook',
         'click #logout': 'logout',
+        'click #qr': 'qrcode',
     },
     facebook: function() {
         app.user.loginFacebook();
@@ -36,7 +38,9 @@ app.Views.SnapLeftView = Backbone.View.extend({
     logout: function() {
         app.user.logout();
     },
-
+    qrcode: function() {
+        app.modal = new app.Views.ModalView().qrcode(app.user.get('hash'));
+    },
     render: function() {
         this.$el.html(this.menus());
     },

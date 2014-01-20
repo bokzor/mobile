@@ -10,6 +10,7 @@ head.js(
     'js/mobile/libs/underscore.js',
     'js/mobile/libs/backbone.js',
     'js/mobile/libs/fastclick.js',
+    'js/mobile/libs/jquery.qrcode.js',
     'js/mobile/app.js',
     'js/mobile/app/models/models.js',
     'js/mobile/app/models/user.js',
@@ -18,6 +19,7 @@ head.js(
     'js/mobile/app/views/snap.js',
     'js/mobile/app/views/loader.js',
     'js/mobile/app/views/popup.js',
+    'js/mobile/app/views/modal.js',
     'js/mobile/app/views/commande.js',
     'js/mobile/app/views/live.js',
     'js/mobile/app/views/app.js',
@@ -29,10 +31,10 @@ head.js(
 
 head.ready(function() {
     function checkConnection() {
-        var networkState = navigator.connection.type;
-        if (networkState === 'Connection.NONE') {
-            alert('Merci de vous connecter au Wifi');
-        }
+        // var networkState = navigator.connection.type;
+        //if (networkState === 'Connection.NONE') {
+        //   alert('Merci de vous connecter au Wifi');
+        //}
     }
 
     document.addEventListener('deviceready', function() {
@@ -41,15 +43,7 @@ head.ready(function() {
         // on initialise les deux panels
         // on active le fast click pour le mobile
         FastClick.attach(document.body);
-        try {
-            FB.init({
-                appId: "1444408885775635",
-                nativeInterface: CDV.FB,
-                useCachedDialogs: false
-            });
-        } catch (e) {
-            console.log(e);
-        }
+
 
     });
 });

@@ -1306,8 +1306,10 @@ ul.list a.active{
 form.login{
   text-align: center;
 }
-.modal > div{
-  position: absolute;
-  bottom: 30px;
-  width: 100%;
+.modal > canvas{
+  padding-top: 150px;
 }
+.modal{
+  text-align: center;
+}
+

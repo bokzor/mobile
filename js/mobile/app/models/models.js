@@ -37,7 +37,6 @@ app.Models.infos = Backbone.Model.extend({
     defaults: {
         tableId: -1,
         commandeId: -1,
-        serverId: -1,
         page: '/',
         bancontact: 0,
         cash: 0,

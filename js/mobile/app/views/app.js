@@ -29,8 +29,7 @@ app.Views.App = Backbone.View.extend({
         });
     },
     initialize: function() {
-        console.log('new app');
-        // this.$el.find('#recherche').on('input', this.recherche);
+
         this.render();
 
     },

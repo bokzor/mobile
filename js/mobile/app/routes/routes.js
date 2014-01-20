@@ -37,6 +37,7 @@ app.Routes.routeur = Backbone.Router.extend({
     },
     commande: function() {
         console.log('route commande')
+        app.user.fetch();
         app.collections.articles.fetch();
         app.collections.categories.fetch();
         if (app.views.app === undefined) {

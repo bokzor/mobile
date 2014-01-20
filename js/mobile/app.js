@@ -45,4 +45,14 @@ var app = {
         Backbone.history.start();
 
     }
+};
+
+try {
+    FB.init({
+        appId: "1444408885775635",
+        nativeInterface: CDV.FB,
+        useCachedDialogs: false
+    });
+} catch (e) {
+    console.log(e);
 }

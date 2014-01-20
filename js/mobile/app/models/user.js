@@ -1,4 +1,6 @@
 app.Models.user = Backbone.Model.extend({
+    url: app.config.url + '/rest/user.json',
+
     defaults: {
         logged: false
     },
