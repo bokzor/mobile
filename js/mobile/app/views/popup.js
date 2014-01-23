@@ -27,8 +27,7 @@ app.Views.PopupView = Backbone.View.extend({
 
     templateEncaisser: _.template('<ul class="list"><li><a data-type="-1" id="encaisser-cash">Cash</a></li>' +
         '<li><a id="encaisser-bancontact" data-type="-2" >Bancontact</a></li>' +
-        '<li><a id="encaisser-offrir" data-type="-3">Offrir</a></li>' +
-        '<li><a id="encaisser-qr" data-type="-4">Scanner le QR code</a></li>'),
+        '<li><a id="encaisser-offrir" data-type="-3">Offrir</a></li>'),
 
 
 
@@ -45,8 +44,8 @@ app.Views.PopupView = Backbone.View.extend({
         "click #charger-table": "chargerTable",
         "clicl #charger-table-qr": "chargerTableQR",
         "click #valider-charger-table": "chargerTableOk",
-        "clicl #charger-client-qr": "chargerClientQR",
-        "clicl #recherche-client": "chargerClientRecheche",
+        "click #charger-client-qr": "chargerClientQR",
+        "click #recherche-client": "chargerClientRecheche",
 
         "click #valider-action-commander": "commanderOk",
         "click #encaisser-cash": "encaisserOk",
@@ -113,7 +112,9 @@ app.Views.PopupView = Backbone.View.extend({
 
     chargerClientQR: function() {
         scanner.scan(function(result) {
-            app.collections.commande.chargerClient(result.text);
+            var infos = new Array();
+            infos['hash'] = result.text;
+            app.collections.commande.chargerClient(infos);
             app.snapper.open('right');
         }, function(error) {
             alert('Echec du scan');
@@ -122,7 +123,11 @@ app.Views.PopupView = Backbone.View.extend({
         this.close();
     },
     chargerClientRecheche: function() {
-
+        console.log('recherche d\'un client');
+        app.routes.navigate('client', {
+            trigger: true,
+            replace: true
+        });
     },
 
     commanderTableId: function() {

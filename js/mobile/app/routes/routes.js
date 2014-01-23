@@ -2,7 +2,8 @@ app.Routes.routeur = Backbone.Router.extend({
     routes: {
         '': 'home',
         'login': 'login',
-        'commande': 'commande'
+        'commande': 'commande',
+        'client': 'client',
     },
     home: function() {
         // on affiche les catégories
@@ -37,9 +38,6 @@ app.Routes.routeur = Backbone.Router.extend({
     },
     commande: function() {
         console.log('route commande');
-        app.user.fetch();
-        app.collections.articles.fetch();
-        app.collections.categories.fetch();
         if (app.views.app === undefined) {
             app.views.app = new app.Views.App({
                 el: $('#content')
@@ -50,7 +48,12 @@ app.Routes.routeur = Backbone.Router.extend({
 
     },
     client: function() {
-        console.log('route client');
+        console.log('route recherche client');
+        app.views.app.delete();
+        new app.Views.SearchUser({
+            el: $('#content')
+        }).render();
+        app.collections.users.fetch();
     },
 
 });

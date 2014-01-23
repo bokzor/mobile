@@ -1,3 +1,5 @@
+// commande en cours, affichée dans le snap droit
+
 app.Views.Commande = Backbone.View.extend({
     tagName: 'ul',
     className: 'list',
@@ -14,6 +16,7 @@ app.Views.Commande = Backbone.View.extend({
     },
     events: {
         "click #supprimer-article": 'deleteArticle',
+
     },
     render: function() {
         this.count = 0;
@@ -57,8 +60,5 @@ app.Views.ArticlesCommandeView = Backbone.View.extend({
     toggleActive: function() {
         this.model.toggleActive();
     },
-    deleteArticle: function() {
-
-    }
 
 });

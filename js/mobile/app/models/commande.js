@@ -49,20 +49,54 @@ app.Collections.commande = Backbone.Collection.extend({
         this.reset();
         url = app.config.url + '/get/commande/table_id/' + table_id + '.json';
         $.getJSON(url, function(data) {
-            $.each(data['articles'], function(key, val) {
-                for (i = 0; i < val['count']; i++) {
-                    var article = {
-                        'prix': val['prix'],
-                        'name': val['name'],
-                        'id_article': val['id'],
-                        'supplements': val['supplements'],
-                        'comment': val['comment']
-                    };
-                    app.collections.commande.addArticle(article);
-                }
-            });
-            // on vient de charger les commandes d'une table. Elle devient donc actie
-            app.infos.set('tableId', table_id);
+            if (data['articles'] !== undefined) {
+                $.each(data['articles'], function(key, val) {
+                    for (i = 0; i < val['count']; i++) {
+                        var article = {
+                            'prix': val['prix'],
+                            'name': val['name'],
+                            'id_article': val['id'],
+                            'supplements': val['supplements'],
+                            'comment': val['comment']
+                        };
+                        app.collections.commande.addArticle(article);
+                    }
+                });
+
+                // on vient de charger les commandes d'une table. Elle devient donc active
+                app.infos.set('tableId', table_id);
+            } else {
+                alert('La commande est vide');
+            }
+
+        });
+    },
+    chargerClient: function(infos) {
+        if (infos['hash'] !== undefined) {
+            var param = infos['hash'];
+        } else {
+            var param = infos['username'];
+        }
+        this.reset();
+        url = app.config.url + '/get/commande/client/' + param + '.json';
+        $.getJSON(url, function(data) {
+            if (data['articles'] !== undefined) {
+                $.each(data['articles'], function(key, val) {
+                    for (i = 0; i < val['count']; i++) {
+                        var article = {
+                            'prix': val['prix'],
+                            'name': val['name'],
+                            'id_article': val['id'],
+                            'supplements': val['supplements'],
+                            'comment': val['comment']
+                        };
+                        app.collections.commande.addArticle(article);
+                    }
+                });
+
+            } else {
+                alert('La commande est vide');
+            }
 
         });
     },
@@ -70,23 +104,29 @@ app.Collections.commande = Backbone.Collection.extend({
         this.reset();
         url = app.config.url + '/get/commande/id/' + id + '.json';
         $.getJSON(url, function(data) {
-            $.each(data['articles'], function(key, val) {
-                for (i = 0; i < val['count']; i++) {
-                    var article = {
-                        'prix': val['prix'],
-                        'name': val['name'],
-                        'id_article': val['id'],
-                        'supplements': val['supplements'],
-                        'comment': val['comment']
-                    };
-                    app.collections.commande.addArticle(article);
-                }
-            });
-            // on vient de charger une commande. Elle devient donc active
-            app.infos.set('commandeId', id);
-            app.infos.set('statutId', data['statut_commande']);
+            if (data['articles'] !== undefined) {
+                $.each(data['articles'], function(key, val) {
+                    for (i = 0; i < val['count']; i++) {
+                        var article = {
+                            'prix': val['prix'],
+                            'name': val['name'],
+                            'id_article': val['id'],
+                            'supplements': val['supplements'],
+                            'comment': val['comment']
+                        };
+                        app.collections.commande.addArticle(article);
+                    }
+                });
+
+                // on vient de charger une commande. Elle devient donc active
+                app.infos.set('commandeId', id);
+                app.infos.set('statutId', data['statut_commande']);
+            } else {
+                alert('La commande est vide');
+            }
         });
     },
+
     enregister: function(table_id) {
         $.ajax({
             type: 'POST',
@@ -194,7 +234,14 @@ app.Collections.commande = Backbone.Collection.extend({
         findArticle = app.collections.commande.findWhere({
             'id_article': article.id_article
         });
-        if (findArticle != undefined && JSON.stringify(findArticle.get('supplements')) == JSON.stringify(article.supplements)) {
+        if (article.supplements === undefined) {
+            article['supplements'] = '';
+        }
+        if (article.comment === undefined) {
+            article['comment'] = '';
+        }
+
+        if (findArticle != undefined && JSON.stringify(findArticle.get('supplements')) == JSON.stringify(article.supplements) && findArticle.get('comment') == article.comment) {
             findArticle.set({
                 'count': findArticle.get('count') + 1
             });

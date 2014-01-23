@@ -2,7 +2,8 @@ app.Models.user = Backbone.Model.extend({
     url: app.config.url + '/rest/user.json',
 
     defaults: {
-        logged: false
+        logged: false,
+        statut: 'client',
     },
     initialize: function() {
         console.log('utilisateur créé');
@@ -15,6 +16,10 @@ app.Models.user = Backbone.Model.extend({
                 trigger: true,
                 replace: true
             });
+            // si l'utilisateur est loggé on va rechercher les données
+            app.user.fetch();
+            app.collections.articles.fetch();
+            app.collections.categories.fetch();
         } else {
             app.routes.navigate('login', {
                 trigger: true,
@@ -26,6 +31,7 @@ app.Models.user = Backbone.Model.extend({
         console.log('action logout');
         app.snapper.on('close', function() {
             var url = app.config.url + '/logout';
+            // on supprime les cookies sur le serveur distant
             $.get(url);
             app.user.set({
                 logged: false
@@ -104,5 +110,16 @@ app.Models.user = Backbone.Model.extend({
                 scope: "email, user_birthday"
             }
         );
+    }
+});
+
+
+app.Collections.users = Backbone.Collection.extend({
+    model: app.Models.user,
+    comparator: 'name',
+    url: app.config.url + '/rest/users.json',
+    recherche: function(query) {
+        app.views.users.attributes['recherche'] = query;
+        app.views.users.recherche();
     }
 });

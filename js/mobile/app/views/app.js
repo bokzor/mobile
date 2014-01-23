@@ -18,8 +18,9 @@ app.Views.App = Backbone.View.extend({
     },
     render: function() {
         console.log('render app');
-        if (app.views.loader !== undefined)
+        if (app.views.loader !== undefined) {
             app.views.loader.remove();
+        }
         this.$el.html(this.template());
         app.views.snap = new app.Views.SnapView();
         app.views.barreAction = new app.Views.BarreActionView();
@@ -27,17 +28,15 @@ app.Views.App = Backbone.View.extend({
         app.views.live = new app.Views.Live({
             collection: app.collections.commandeLive
         });
+        app.views.cats.render();
     },
     initialize: function() {
-
         this.render();
-
     },
     delete: function() {
         app.snapper.disable();
         app.views.snap.remove();
         app.views.barreAction.remove();
         app.collections.commandeLive.close();
-        app.collections.commandeLive.remove();
     }
 })

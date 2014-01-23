@@ -1312,4 +1312,12 @@ form.login{
 .modal{
   text-align: center;
 }
-
+.cats{
+  position: fixed;
+  width: 100%;
+  background-color: #ecf0f1;
+  z-index: 200;  
+}
+.articles{
+  padding-top: 50px;
+}

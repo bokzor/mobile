@@ -21,7 +21,6 @@ app.Views.SnapLeftView = Backbone.View.extend({
     className: 'snap-drawer snap-drawer-left',
     id: 'left-drawer',
     menus: _.template('<ul class="list">' +
-        '<li><a>Gestion des commandes</a></li>' +
         '<li><a id="qr">Votre code QR </a></li>' +
         '<li><a id="lier-facebook">Lier son compte Facebook</a></li>' +
         '<li class="list-divider"></li>' +

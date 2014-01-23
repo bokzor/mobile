@@ -12,9 +12,15 @@ head.js(
     'js/mobile/libs/fastclick.js',
     'js/mobile/libs/jquery.qrcode.js',
     'js/mobile/app.js',
+
     'js/mobile/app/models/models.js',
     'js/mobile/app/models/user.js',
     'js/mobile/app/models/commande.js',
+    'js/mobile/app/models/live.js',
+
+    'js/mobile/app/views/articles.js',
+    'js/mobile/app/views/users.js',
+    'js/mobile/app/views/cats.js',
     'js/mobile/app/views/views.js',
     'js/mobile/app/views/snap.js',
     'js/mobile/app/views/loader.js',
