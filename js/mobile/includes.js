@@ -36,8 +36,6 @@ head.js(
 );
 
 head.ready(function() {
-    alert('heads ready');
-
     function checkConnection() {
         // var networkState = navigator.connection.type;
         //if (networkState === 'Connection.NONE') {
@@ -46,7 +44,7 @@ head.ready(function() {
     }
 
     document.addEventListener('deviceready', function() {
-        //checkConnection();
+        checkConnection();
         app.init()
         // on initialise les deux panels
         // on active le fast click pour le mobile
