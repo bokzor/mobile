@@ -43,7 +43,7 @@ var app = {
             }
         });
 
-        console.log('window.App Initialized');
+        alert('window.App Initialized');
         Backbone.history.start();
         try {
             FB.init({
@@ -52,7 +52,7 @@ var app = {
                 useCachedDialogs: false
             });
         } catch (e) {
-            console.log(e);
+            alert(e);
         }
     }
 };

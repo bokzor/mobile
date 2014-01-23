@@ -28,7 +28,7 @@ app.Routes.routeur = Backbone.Router.extend({
         });
     },
     login: function() {
-        console.log('route login');
+        alert('route login');
         if (app.views.login === undefined) {
             app.views.login = new app.Views.LoginView({
                 el: $('#content')
@@ -37,7 +37,7 @@ app.Routes.routeur = Backbone.Router.extend({
         app.views.login.render();
     },
     commande: function() {
-        console.log('route commande');
+        alert('route commande');
         if (app.views.app === undefined) {
             app.views.app = new app.Views.App({
                 el: $('#content')
@@ -48,7 +48,7 @@ app.Routes.routeur = Backbone.Router.extend({
 
     },
     client: function() {
-        console.log('route recherche client');
+        alert('route recherche client');
         app.views.app.delete();
         new app.Views.SearchUser({
             el: $('#content')
