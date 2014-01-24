@@ -26,6 +26,10 @@ app.Routes.routeur = Backbone.Router.extend({
                 });
             }
         });
+        app.routes.navigate('login', {
+            trigger: true,
+            replace: true
+        });
     },
     login: function() {
         console.log('route login');

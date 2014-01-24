@@ -43,7 +43,17 @@ head.ready(function() {
         //}
     }
 
+    $(document).on('focus', 'select, input, textarea', function() {
+        $('.black-overlay').css('position', 'static');
+    });
+    $(document).on('blur', 'select, input, textarea', function() {
+        $('.black-overlay').css('position', 'absolute');
+    });
+
+    console.log('head ready');
+
     document.addEventListener('deviceready', function() {
+        console.log('device ready');
         checkConnection();
         app.init()
         // on initialise les deux panels

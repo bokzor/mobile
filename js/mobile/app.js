@@ -43,7 +43,12 @@ var app = {
             }
         });
 
-        console.log('window.App Initialized');
+        app.routes.navigate('home', {
+            trigger: true,
+            replace: true
+        });
+        
+        console.log('window.App Initialized ');
         Backbone.history.start();
         try {
             FB.init({
