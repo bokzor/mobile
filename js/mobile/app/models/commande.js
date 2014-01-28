@@ -66,7 +66,7 @@ app.Collections.commande = Backbone.Collection.extend({
                 // on vient de charger les commandes d'une table. Elle devient donc active
                 app.infos.set('tableId', table_id);
             } else {
-                alert('La commande est vide');
+                navigator.notification.alert('La commande est vide');
             }
 
         });
@@ -95,7 +95,7 @@ app.Collections.commande = Backbone.Collection.extend({
                 });
 
             } else {
-                alert('La commande est vide');
+                navigator.notification.alert('La commande est vide');
             }
 
         });
@@ -122,7 +122,7 @@ app.Collections.commande = Backbone.Collection.extend({
                 app.infos.set('commandeId', id);
                 app.infos.set('statutId', data['statut_commande']);
             } else {
-                alert('La commande est vide');
+                navigator.notification.alert('La commande est vide');
             }
         });
     },
@@ -143,7 +143,7 @@ app.Collections.commande = Backbone.Collection.extend({
             // Il faudra lancer l'impression du ticket ici
             success: function() {
                 app.infos.annuler();
-                alert('La commande a été enregistrée');
+                navigator.notification.alert('La commande a été enregistrée');
             },
         });
     },
@@ -151,7 +151,7 @@ app.Collections.commande = Backbone.Collection.extend({
         if (app.infos.get('statutId') !== 0 && app.infos.get('statutId') !== 1) {
             console.log(app.infos.get('statutId'));
 
-            alert('Vous ne pouvez plus modifier la commande');
+            navigator.notification.alert('Vous ne pouvez plus modifier la commande');
         } else {
             console.log(app.infos.get('statutId'));
             $.ajax({
@@ -169,7 +169,7 @@ app.Collections.commande = Backbone.Collection.extend({
                 // Il faudra lancer l'impression du ticket ici
                 success: function() {
                     app.infos.annuler();
-                    alert('La commande a été modifiée');
+                    navigator.notification.alert('La commande a été modifiée');
                 },
 
             });
@@ -220,7 +220,7 @@ app.Collections.commande = Backbone.Collection.extend({
                 statut_id: app.infos.get('statut'),
             },
             success: function() {
-                alert('La commande a été finalisée');
+                navigator.notification.alert('La commande a été finalisée');
                 app.infos.annuler();
             }
         });
