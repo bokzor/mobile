@@ -35,7 +35,7 @@ app.Routes.routeur = Backbone.Router.extend({
         console.log('route login');
         if (app.views.login === undefined) {
             app.views.login = new app.Views.LoginView({
-                el: $('#content')
+                el: $('.container')
             });
         }
         app.views.login.render();
@@ -44,7 +44,7 @@ app.Routes.routeur = Backbone.Router.extend({
         console.log('route commande');
         if (app.views.app === undefined) {
             app.views.app = new app.Views.App({
-                el: $('#content')
+                el: $('.container')
             });
         } else {
             app.views.app.render();

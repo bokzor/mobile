@@ -19,7 +19,7 @@
 
 #loginForm {
   background: none;
-  margin: 100px auto 0;
+  margin: 0px auto 0;
   padding: 10px;
   width: 280px;
 }
@@ -82,7 +82,7 @@ input[type="password"]:focus {
   height: 100px;
   position: absolute;
   width: 100%;
-  bottom: 100px;
+  bottom: 0px;
   text-align: center;
 }
 
