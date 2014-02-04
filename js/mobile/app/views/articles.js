@@ -25,7 +25,7 @@ app.Views.ArticlesView = Backbone.View.extend({
             app.views.cats.attributes['level'] = 0;
             app.views.cats.render();
         }
-        $('#content').append(this.$el);
+        $('.content').append(this.$el);
 
     },
     addOne: function(article) {
@@ -38,7 +38,7 @@ app.Views.ArticlesView = Backbone.View.extend({
     render: function() {
         this.$el.empty();
         this.collection.filter(this.filter, this).forEach(this.addOne, this);
-        $('#content').append(this.$el);
+        $('.content').append(this.$el);
     }
 });
 

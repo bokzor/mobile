@@ -36,7 +36,7 @@ app.Views.CatsView = Backbone.View.extend({
         }
         // on filtre la collection et on append chaque categorie dans le html
         this.collection.filter(this.levelFilter, this).forEach(this.addOne, this);
-        $('#content').html(this.$el);
+        $('.content').html(this.$el);
     },
     // on affiche les catégories de départ
     goBack: function() {

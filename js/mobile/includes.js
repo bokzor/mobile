@@ -5,6 +5,7 @@ head.js(
     'barcodescanner.js',
     'js/mobile/libs/zepto.js',
     'js/mobile/libs/touch.js',
+    'js/mobile/libs/snap.js',
     'js/mobile/libs/prefixfree.js',
     'js/mobile/libs/underscore.js',
     'js/mobile/libs/backbone.js',
@@ -42,7 +43,6 @@ head.ready(function() {
         //}
     }
 
-    // fonction pour corriger les elements fixed et absolute dans le cadre d'ios.
     $(document).on('focus', 'select, input, textarea', function() {
         $('.black-overlay').css('position', 'static');
     });
