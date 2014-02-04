@@ -36,7 +36,7 @@ app.Views.BarreActionView = Backbone.View.extend({
     },
     annuler: function() {
         if (app.collections.commande.length === 0) {
-            app.snapper.close();
+            app.views.snap.close();
         }
         app.infos.annuler();
     },
@@ -48,15 +48,15 @@ app.Views.BarreActionView = Backbone.View.extend({
         $('body').append(this.$el);
     },
     commander: function() {
-        app.snapper.close();
+        app.views.snap.close();
         new app.Views.PopupView().commanderOptions();
     },
     encaisser: function() {
-        app.snapper.close();
+        app.views.snap.close();
         new app.Views.PopupView().encaisser();
     },
     charger: function() {
-        app.snapper.close();
+        app.views.snap.close();
         new app.Views.PopupView().charger();
     },
 })

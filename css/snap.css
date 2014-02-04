@@ -1,5 +1,5 @@
 /* Layout */
-.container { width: 100%;overflow: hidden; padding-top: 97px;}
+.container { width: 100%; padding-top: 97px; height: 100%; }
 #content:before,
 #content:after {
   content: " ";
@@ -129,4 +129,17 @@ aside {
     margin-right: 0;
     float: right;
   }         
+}
+#content{
+  overflow-y: auto; overflow-x: hidden;
+  background-color: #ecf0f1;
+}
+.articles{
+  padding-bottom: 140px;
+  padding-top: 30px;
+}
+#back{
+  background-color: #ecf0f1;
+  position: fixed;
+  z-index: 20;
 }

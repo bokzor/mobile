@@ -13,6 +13,9 @@ app.Views.SnapView = Backbone.View.extend({
     remove: function() {
         this.snapRight.remove();
         this.snapLeft.remove();
+    },
+    close: function() {
+        $('body').removeClass("active-nav");
     }
 
 })
@@ -42,8 +45,6 @@ app.Views.SnapLeftView = Backbone.View.extend({
     },
     toggle: function() {
         $('body').removeClass("active-sidebar").toggleClass("active-nav");
-        $('.sidebar-button').removeClass("active-button");
-        $('.menu-button').toggleClass("active-button");
         console.log('toggle');
     },
     facebook: function() {
@@ -78,7 +79,5 @@ app.Views.SnapRightView = Backbone.View.extend({
     },
     toggle: function() {
         $('body').removeClass("active-nav").toggleClass("active-sidebar");
-        $('.menu-button').removeClass("active-button");
-        $('.sidebar-button').toggleClass("active-button");
     },
 });
