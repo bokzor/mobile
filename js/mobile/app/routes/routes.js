@@ -8,16 +8,25 @@ app.Routes.routeur = Backbone.Router.extend({
     home: function() {
         // on affiche les catégories
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: app.config.url + '/basic_auth',
             success: function(data, textStatus, request) {
-                app.user.set({
-                    logged: true
-                });
-                app.routes.navigate('commande', {
-                    trigger: true,
-                    replace: true
-                });
+                if (data === 'client' || data === 'serveur') {
+                    console.log(data);
+                    console.log('go commande');
+                    app.user.set({
+                        logged: true
+                    });
+                    app.routes.navigate('commande', {
+                        trigger: true,
+                        replace: true
+                    });
+                } else {
+                    app.routes.navigate('login', {
+                        trigger: true,
+                        replace: true
+                    });
+                }
             },
             error: function(request, textStatus, errorThrown) {
                 app.routes.navigate('login', {

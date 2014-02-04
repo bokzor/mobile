@@ -47,15 +47,25 @@ app.Models.user = Backbone.Model.extend({
 
     },
     validerLogin: function(username, password) {
-        var url = app.config.protocol + username + ':' + password + '@' + app.config.ip + '/basic_auth';
-        console.log(url);
+        var url = app.config.protocol + app.config.ip + '/basic_auth';
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: url,
+            data: {
+                password: password,
+                username: username
+            },
             success: function(data, textStatus, request) {
-                app.user.set({
-                    logged: true
-                });
+                if (data === 'client' || data === 'serveur') {
+                    app.user.set({
+                        logged: true
+                    });
+                } else {
+                    app.views.loader.remove();
+                    app.user.set({
+                        logged: false
+                    });
+                }
             },
             error: function(request, textStatus, errorThrown) {
                 app.views.loader.remove();
@@ -86,7 +96,6 @@ app.Models.user = Backbone.Model.extend({
                                         app.user.set({
                                             logged: true
                                         });
-                                        console.log(data);
                                     },
                                 });
 
