@@ -11,8 +11,8 @@ var app = {
     routes: {},
     config: {
         protocol: 'http://',
-        url: 'http://liveorder.eu',
-        ip: 'liveorder.eu',
+        url: 'http://basssecour.dyndns.org:8888',
+        ip: 'basssecour.dyndns.org:8888',
     },
 
     init: function() {
@@ -47,7 +47,7 @@ var app = {
             trigger: true,
             replace: true
         });
-        
+
         console.log('window.App Initialized ');
         Backbone.history.start();
         try {
