@@ -78,7 +78,7 @@ app.Collections.commande = Backbone.Collection.extend({
             var param = infos['username'];
         }
         this.reset();
-        url = app.config.url + '/get/commande/client/' + param + '.json';
+        url = app.config.url + '/get/commande/client/' + param;
         $.getJSON(url, function(data) {
             if (data['articles'] !== undefined) {
                 $.each(data['articles'], function(key, val) {

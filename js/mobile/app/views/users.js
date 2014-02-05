@@ -37,7 +37,7 @@ app.Views.SearchUser = Backbone.View.extend({
 })
 
 
-// s'occupe d'afficher la liste des articles
+// s'occupe d'afficher la liste des utilisateurs
 app.Views.UsersView = Backbone.View.extend({
     tagName: 'ul',
     className: 'list',
@@ -80,7 +80,7 @@ app.Views.UserView = Backbone.View.extend({
         return this;
     },
     events: {
-        'tap a': 'select',
+        'click a': 'select',
     },
     select: function(e) {
         var username = $(e.currentTarget).data("username");
@@ -92,7 +92,7 @@ app.Views.UserView = Backbone.View.extend({
             trigger: true,
             replace: true
         });
-        app.snapper.open('right');
+        //app.snapper.open('right');
 
     }
 });
