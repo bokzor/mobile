@@ -44,6 +44,10 @@ app.Models.infos = Backbone.Model.extend({
     },
     initialize: function() {
         this.on('change', this.barreAction);
+        //this.on('change:tableId', this.changeTable);
+    },
+    changeTable: function() {
+        app.views.app.changeTable(this.tableId);
     },
     annuler: function() {
         app.collections.commande.reset();

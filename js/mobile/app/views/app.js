@@ -1,7 +1,7 @@
 app.Views.App = Backbone.View.extend({
     template: _.template('<header class="bar-title">' +
         '<button class="button" id="toggle-left"><span class="icon-menu"></span></button>' +
-        '<h1 class="title"></h1>' +
+        '<h1 class="title"><% if(tableId!== -1) { %>Table : <%= tableId %> <% } %> </h1>' +
         '<button class="button" id="toggle-right"><span class="icon-cart"></span><span id="count-basket" class="count">0</span></button>' +
         '</header>' +
         '<div class="bar-standard bar-header-secondary">' +
@@ -16,12 +16,19 @@ app.Views.App = Backbone.View.extend({
         app.collections.articles.recherche($(e.target).val());
         console.log('recherche en cours');
     },
+    changeTable: function(tableId) {
+        this.$el.html(this.template({
+            tableId: app.infos.get('tableId')
+        }));
+    },
     render: function() {
         console.log('render app');
         if (app.views.loader !== undefined) {
             app.views.loader.remove();
         }
-        this.$el.html(this.template());
+        this.$el.html(this.template({
+            tableId: app.infos.get('tableId')
+        }));
         app.views.snap = new app.Views.SnapView();
         app.views.barreAction = new app.Views.BarreActionView();
         app.collections.commandeLive = new app.Collections.commandeLive();

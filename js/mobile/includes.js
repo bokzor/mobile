@@ -42,13 +42,13 @@ head.ready(function() {
         //   alert('Merci de vous connecter au Wifi');
         //}
     }
-    var iOS = /(iPad|iPhone|iPod)/g.test( navigator.userAgent );
-    if(iOS){
+    var iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
+    if (iOS) {
         $(document).on('focus', 'select, input, textarea', function() {
-            $('.black-overlay').css('position', 'static');
+            $('.black-overlay, #barre-action').hide();
         });
         $(document).on('blur', 'select, input, textarea', function() {
-            $('.black-overlay').css('position', 'absolute');
+            $('.black-overlay, #barre-action').show();
         });
     }
 

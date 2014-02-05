@@ -1,0 +1,43 @@
+/* css pour version tablette */
+@media all and (min-width: 800px) {
+
+  #right-drawer{
+    width: 30%;
+    z-index: 11;
+  }
+
+  #left-drawer{
+    width: 25%;
+    z-index: 11;
+  }
+  .content{
+    width: inherit;
+    margin-left: 25%;    
+  }
+  .snap-drawers{
+    top: 97px;
+  }
+  #toggle-left{
+    display: none;
+  }
+  #toggle-right{
+    display: none;
+  }
+}
+
+@media all and (min-width: 600px) {
+  #right-drawer{
+    width: 40%;
+    z-index: 11;
+  }
+  .content{
+    width: 60%;
+  }
+  .snap-drawers{
+  }
+  #toggle-left{
+  }
+  #toggle-right{
+    display: none;
+  }
+}
