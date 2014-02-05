@@ -5,25 +5,25 @@ app.Views.BarreActionView = Backbone.View.extend({
     barreAction: _.template('<ul class="tab-inner">' +
         '<li class="tab-item">' +
         '<a id="encaisser-action">' +
-        '<i class="tab-icon icon-money"></i>' +
+        '<span class="tab-icon icon-banknote"></span>' +
         '<div class="tab-label">Encaisser</div>' +
         '</a>' +
         '</li>' +
         '<li  class="tab-item">' +
         '<a id="commander-action">' +
-        '<i class="tab-icon icon-ok"></i>' +
+        '<span class="tab-icon icon-checkmark"></span>' +
         '<div class="tab-label"><% if(app.infos.get("commandeId")=== -1){%>Commander<% } else { %>Modifier<% } %></div>' +
         '</a>' +
         '</li>' +
         '<li class="tab-item">' +
         '<a id="charger-action">' +
-        '<i class="tab-icon icon-download"></i>' +
+        '<span class="tab-icon icon-download"></span>' +
         '<div class="tab-label">Charger</div>' +
         '</a>' +
         '</li>' +
         '<li class="tab-item">' +
         '<a id="annuler-action">' +
-        '<i class="tab-icon icon-cancel"></i>' +
+        '<span class="tab-icon icon-close"></span>' +
         '<div class="tab-label">Annuler</div>' +
         '</a>' +
         '</li>' +

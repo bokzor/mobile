@@ -106,7 +106,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  font: 14px/1.25 "Helvetica Neue", sans-serif;
+  font: 14px/1.25 'Lato', Calibri, Arial, sans-serif;
   color: #222;
   background-color: #fff;
 }
@@ -130,7 +130,6 @@ a.tappable-active{
   right: 0;
   bottom: 0;
   left: 0;
-  overflow: auto;
   background-color: #ecf0f1;
   -webkit-transition-property: top, bottom;
           transition-property: top, bottom;
@@ -313,14 +312,8 @@ a.tappable-active{
   position: relative;
   z-index: 10; /* Places buttons over full width title */
   font-size: 12px;
-  line-height: 23px;
+  line-height: 27px;
   color: #fff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
-  background-color: #1eb0e9;
-  background-image: -webkit-linear-gradient(top, #1eb0e9 0, #0984c6 100%);
-  background-image: linear-gradient(to bottom, #1eb0e9 0, #0984c6 100%);
-  border: 1px solid #0e5895;
-  box-shadow: 0 1px rgba(255, 255, 255, .25);
   -webkit-box-flex: 0;
           box-flex: 0;
 }
@@ -501,7 +494,6 @@ a.tappable-active{
 
 /* Remove usual bullet styles from list */
 .list {
-  margin-bottom: 10px;
   list-style: none;
   font-style: normal;
 }
@@ -509,7 +501,7 @@ a.tappable-active{
 /* Pad each list item and add dividers */
 .list li {
   position: relative;
-  padding: 11px 60px 11px 10px; /* Given extra right padding to accomodate counts, chevrons or buttons */
+  padding: 11px 10px 11px 10px; /* Given extra right padding to accomodate counts, chevrons or buttons */
   border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
@@ -523,12 +515,12 @@ a.tappable-active{
   position: relative;
   display: block;
   padding: inherit;
-  margin: -11px -60px -11px -10px;
+  margin: -11px -10px -11px -10px;
   color: inherit;
 }
 
 .list li > a:active{
-  background-color: #e67e22;
+  background-color: #2c3e50;
   color: #ececec;
 }
 /* Inset list
@@ -753,7 +745,6 @@ select {
   background-image: linear-gradient(to bottom, #f8f8f8 0, #d4d4d4 100%);
   border: 1px solid rgba(0, 0, 0, .3);
   border-radius: 3px;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .4), 0 1px 2px rgba(0, 0, 0, .05);
 }
 
 /* Active */
@@ -763,7 +754,6 @@ select {
   color: #333;
   background-color: #ccc;
   background-image: none;
-  box-shadow: inset 0 3px 3px rgba(0, 0, 0, .2);
 }
 
 /* Button modifiers
@@ -846,7 +836,6 @@ button.button-block {
   margin-left: 4px;
   text-shadow: none;
   background-color: rgba(0, 0, 0, .2);
-  box-shadow: inset 0 1px 1px -1px #000000, 0 1px 1px -1px #fff;
 }
 
 /* Position counts within block level buttons
@@ -1250,7 +1239,8 @@ button.button-block {
 
 /* Active state for toggle */
 ul.list a.active{
-  background: #e67e22;
+  background: #FFF;
+  color: #000 !important;
 }
 .toggle.active {
   background-color: #19a8e4;
@@ -1313,11 +1303,12 @@ form.login{
   text-align: center;
 }
 .cats{
-  position: fixed;
   width: 100%;
   background-color: #ecf0f1;
   z-index: 200;  
 }
 .articles{
-  padding-top: 50px;
+  position: relative;
+  overflow: auto;
+  height: 80%;
 }

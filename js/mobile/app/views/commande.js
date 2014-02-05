@@ -25,7 +25,8 @@ app.Views.Commande = Backbone.View.extend({
         this.$el.empty();
         // on ajoute un a un les articles
         this.collection.forEach(this.addOne, this);
-        this.$el.append('<li class="list-divider">Total : <span class="count">' + this.total + '</span></li><li><a id="supprimer-article">Supprimer</a></li>');
+        this.$el.append('<li class="list-divider">Total : <span class="count">' + this.total + '</span></li>' +
+            '<li><a class="icon-remove icon" id="supprimer-article">Supprimer</a></li>');
         $('#count-basket').html(this.count);
 
     },

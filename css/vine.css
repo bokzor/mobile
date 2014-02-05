@@ -32,7 +32,7 @@
 	 * Green
 	 */
 	.bar-title{
-		background:#e67e22;
+		background: #2c3e50;
 		}
 	.entry a{
 		color: #e67e22;
@@ -44,7 +44,7 @@
  */
 body{
 	background: #34495e;
-	font-family: "Helvetica Neue",HelveticaNeue,"Helvetica-Neue",Helvetica,"BBAlpha Sans",sans-serif;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
  	background: url(../img/login.png) no-repeat center center fixed;
     -webkit-background-size: cover; /* For WebKit*/
     -moz-background-size: cover;    /* Mozilla*/
@@ -104,19 +104,13 @@ img{
 		text-shadow: 0 1px rgba(0, 0, 0, 0.25);
 		}
 	.bar-title [class*="button"]{
-		background: rgba(0,0,0,0.25);
-		border: 1px solid rgba(0,0,0,0.25);
-		
-		border-top: none;
+
+		background: #2c3e50;
+		border: none;
 		text-shadow: 0 1px rgba(0, 0, 0, 0.25);
-		
-		-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.25) inset, 0 1px 0 rgba(255,255,255,0.25);
-		   -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.25) inset, 0 1px 0 rgba(255,255,255,0.25);
-		        box-shadow: 0 1px 0 rgba(0,0,0,0.25) inset, 0 1px 0 rgba(255,255,255,0.25);
+
 		}
-		.bar-title [class*="button"]:active{
-			background: rgba(0,0,0,0.5);
-			}
+
 .bar-standard.bar-header-secondary{
 	top: 44px;
 	background: #E3E3DD;
@@ -490,5 +484,12 @@ table td{
 		color: #000;
 		opacity: 0.2;
 		}
+*:focus {
+    outline: 0;
+}
+#back{
+	background:#2c3e50;
+	color:#fff;
+}
 
 	

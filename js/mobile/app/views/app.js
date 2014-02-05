@@ -1,8 +1,8 @@
 app.Views.App = Backbone.View.extend({
     template: _.template('<header class="bar-title">' +
-        '<button class="button" id="toggle-left"><i class="icon-menu"></i></button>' +
+        '<button class="button" id="toggle-left"><span class="icon-menu"></span></button>' +
         '<h1 class="title"></h1>' +
-        '<button class="button" id="toggle-right"><i class="icon-basket"></i><span id="count-basket" class="count">0</span></button>' +
+        '<button class="button" id="toggle-right"><span class="icon-cart"></span><span id="count-basket" class="count">0</span></button>' +
         '</header>' +
         '<div class="bar-standard bar-header-secondary">' +
         '<input type="search" id="recherche" placeholder="Recherche">' +

@@ -42,13 +42,15 @@ head.ready(function() {
         //   alert('Merci de vous connecter au Wifi');
         //}
     }
-
-    $(document).on('focus', 'select, input, textarea', function() {
-        $('.black-overlay').css('position', 'static');
-    });
-    $(document).on('blur', 'select, input, textarea', function() {
-        $('.black-overlay').css('position', 'absolute');
-    });
+    var iOS = /(iPad|iPhone|iPod)/g.test( navigator.userAgent );
+    if(iOS){
+        $(document).on('focus', 'select, input, textarea', function() {
+            $('.black-overlay').css('position', 'static');
+        });
+        $(document).on('blur', 'select, input, textarea', function() {
+            $('.black-overlay').css('position', 'absolute');
+        });
+    }
 
     console.log('head ready');
 
