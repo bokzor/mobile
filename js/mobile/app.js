@@ -11,8 +11,8 @@ var app = {
     routes: {},
     config: {
         protocol: 'http://',
-        url: 'http://basssecour.dyndns.org:8888',
-        ip: 'basssecour.dyndns.org:8888',
+        url: 'http://bassecour.dyndns.org:8888',
+        ip: 'bassecour.dyndns.org:8888',
     },
 
     init: function() {
