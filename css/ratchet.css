@@ -125,6 +125,8 @@ a.tappable-active{
 
 /* Wrapper to be used around all content not in .bar-title and .bar-tab */
 .content {
+  height: auto;
+  margin-bottom: 50px;
   position: fixed;
   top: 0;
   right: 0;
@@ -1310,5 +1312,5 @@ form.login{
 .articles{
   position: relative;
   overflow: auto;
-  height: 80%;
+  height: 100%;
 }
