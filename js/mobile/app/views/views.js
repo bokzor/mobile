@@ -49,14 +49,17 @@ app.Views.BarreActionView = Backbone.View.extend({
     },
     commander: function() {
         app.snapper.close();
-        new app.Views.PopupView().commanderOptions();
+        app.views.popup = new app.Views.PopupView();
+        app.views.popup.commanderOptions();
     },
     encaisser: function() {
         app.snapper.close();
-        new app.Views.PopupView().encaisser();
+        app.views.popup = new app.Views.PopupView();
+        app.views.popup.encaisser();
     },
     charger: function() {
         app.snapper.close();
-        new app.Views.PopupView().charger();
+        app.views.popup = new app.Views.PopupView();
+        app.views.popup.charger();
     },
 })

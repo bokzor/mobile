@@ -3,12 +3,11 @@ app.Views.App = Backbone.View.extend({
         '<button class="button" id="toggle-left"><span class="icon-menu"></span></button>' +
         '<h1 class="title"><% if(tableId!== -1) { %>Table : <%= tableId %> <% } %> </h1>' +
         '<button class="button" id="toggle-right"><span class="icon-cart"></span><span id="count-basket" class="count">0</span></button>' +
-        '</header>' +
-        '<div class="bar-standard bar-header-secondary">' +
+        '</header>'),
+    templateRecherche: _.template('<div class="bar-standard bar-header-secondary">' +
         '<input type="search" id="recherche" placeholder="Recherche">' +
-        '</div>' +
-        '<div class="content">' +
         '</div>'),
+    templateContent: _.template('<div class="content"></div>'),
     events: {
         "input #recherche": "recherche",
     },
@@ -23,19 +22,26 @@ app.Views.App = Backbone.View.extend({
     },
     render: function() {
         console.log('render app');
+        app.views.header = new app.Views.HeaderView();
+
         if (app.views.loader !== undefined) {
             app.views.loader.remove();
         }
-        this.$el.html(this.template({
-            tableId: app.infos.get('tableId')
-        }));
-        app.views.snap = new app.Views.SnapView();
+
+        this.$el.html(app.views.header.render().el);
+        this.$el.append(this.templateRecherche() + this.templateContent());
+
+        app.views.snap = new app.Views.SnapView({
+            model: app.user
+        });
         app.views.barreAction = new app.Views.BarreActionView();
         app.collections.commandeLive = new app.Collections.commandeLive();
         app.views.live = new app.Views.Live({
             collection: app.collections.commandeLive
         });
         app.views.cats.render();
+
+        return this;
     },
     initialize: function() {
         this.render();

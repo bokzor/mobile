@@ -216,7 +216,6 @@ a.tappable-active{
   background-image: -webkit-linear-gradient(top, #1eb0e9 0, #109adc 100%);
   background-image: linear-gradient(to bottom, #1eb0e9 0, #109adc 100%);
   border-bottom: 1px solid #0e5895;
-  box-shadow: inset 0 1px 1px -1px rgba(255, 255, 255, .8);
   -webkit-box-orient: horizontal;
           box-orient: horizontal;
 }
@@ -301,10 +300,8 @@ a.tappable-active{
 /* Label for tab */
 .tab-label {
   margin-top: 1px;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 14px;
   color: #fff;
-  text-shadow: 0 1px rgba(0, 0, 0, .3);
 }
 
 /* Buttons in title bars
@@ -314,7 +311,7 @@ a.tappable-active{
 .bar-title [class*="button"] {
   position: relative;
   z-index: 10; /* Places buttons over full width title */
-  font-size: 12px;
+  font-size: 16px;
   line-height: 27px;
   color: #fff;
   -webkit-box-flex: 0;
@@ -335,7 +332,6 @@ a.tappable-active{
 /* Override standard button active states */
 .bar-title .button:active {
   color: #fff;
-  background-color: #0876b1;
 }
 
 /* Directional buttons in title bars (thanks to @GregorAdams for solution - http://cssnerd.com/2011/11/30/the-best-pure-css3-ios-style-arrow-back-button/)
@@ -1300,7 +1296,7 @@ form.login{
   text-align: center;
 }
 .modal > canvas{
-  padding-top: 150px;
+  padding-top: 40%;
 }
 .modal{
   text-align: center;
@@ -1314,4 +1310,8 @@ form.login{
   position: relative;
   overflow: auto;
   height: 100%;
+}
+
+ul.articles li:last-child{
+  margin-bottom: 50px;
 }

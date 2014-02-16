@@ -1,17 +1,28 @@
 app.Views.SnapView = Backbone.View.extend({
     className: 'snap-drawers',
     render: function() {
-        this.snapRight = new app.Views.SnapRightView();
-        this.snapLeft = new app.Views.SnapLeftView();
-        this.$el.html(this.snapRight.el).append(this.snapLeft.el);
 
-        $('#content').after(this.el);
     },
     initialize: function() {
-        this.render();
+        // on cree une reference pour le snap droit et gauche
+        this.snapRight = new app.Views.SnapRightView();
+        this.snapLeft = new app.Views.SnapLeftView({
+            model: this.model
+        });
+        // on ajouter le html du snap droit et gauche a la vue snap
+        this.$el.html(this.snapRight.el).append(this.snapLeft.el);
+        // on place le html apres l'id content
+        $('#content').after(this.el);
         app.snapper = new Snap({
             element: document.getElementById('content')
         });
+
+
+        // si on change un attribut de l'utilisateur on réaffiche la vue
+        this.model.on('sync', function() {
+            this.snapLeft.render();
+        }, this);
+
     },
 
 })
@@ -20,6 +31,10 @@ app.Views.SnapView = Backbone.View.extend({
 app.Views.SnapLeftView = Backbone.View.extend({
     className: 'snap-drawer snap-drawer-left',
     id: 'left-drawer',
+    profile: _.template('<div class="container-image-profile"><div class="dummy"><%= first_name %>  <%= last_name %></div>' +
+        '<div class="snap-left-login-profile" style="background-image:url(<%= imageUrl %>)">' +
+        '</div></div>'),
+
     menus: _.template('<ul class="list">' +
         '<li><a class="icon icon-qrcode" id="qr">Votre code QR </a></li>' +
         '<li><a class="icon icon-facebook" id="lier-facebook">Lier a Facebook</a></li>' +
@@ -41,7 +56,12 @@ app.Views.SnapLeftView = Backbone.View.extend({
         app.modal = new app.Views.ModalView().qrcode(app.user.get('hash'));
     },
     render: function() {
-        this.$el.html(this.menus());
+        var imageUrl = app.config.url + '/uploads/avatar/' + app.user.get('avatar');
+        this.$el.html(this.profile({
+            imageUrl: imageUrl,
+            last_name: app.user.get('last_name'),
+            first_name: app.user.get('first_name')
+        }) + this.menus());
     },
     initialize: function() {
         $(document).on('click', '#toggle-left', function() {
@@ -54,6 +74,7 @@ app.Views.SnapLeftView = Backbone.View.extend({
         });
 
         this.render();
+        return this;
     },
 });
 

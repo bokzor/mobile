@@ -1,3 +1,22 @@
+@media all and (min-width: 600px) {
+  #right-drawer{
+    width: 40%;
+    z-index: 11;
+  }
+  .popover{
+    left: 30%;
+  }
+  #content{
+    width: 60%;
+  }
+
+  #toggle-right{
+    display: none;
+  }
+
+}
+
+
 /* css pour version tablette */
 @media all and (min-width: 800px) {
 
@@ -5,13 +24,18 @@
     width: 30%;
     z-index: 11;
   }
-
+  .popover{
+    left: 50%;
+  }
+  .content{
+    width: inherit;
+  }
   #left-drawer{
     width: 25%;
     z-index: 11;
   }
-  .content{
-    width: inherit;
+  #content{
+    width: 45%;
     margin-left: 25%;    
   }
   .snap-drawers{
@@ -25,19 +49,12 @@
   }
 }
 
-@media all and (min-width: 600px) {
-  #right-drawer{
-    width: 40%;
-    z-index: 11;
-  }
-  .content{
-    width: 60%;
-  }
-  .snap-drawers{
-  }
-  #toggle-left{
-  }
-  #toggle-right{
-    display: none;
-  }
+/* on ajuste la taille de la zone centrale pour la page de login */
+#content.login {
+  width: 100%;
+  margin: 0;
+}
+
+.snap-drawer-left li{
+  padding-left: 15px;
 }

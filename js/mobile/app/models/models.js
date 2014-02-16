@@ -44,13 +44,19 @@ app.Models.infos = Backbone.Model.extend({
     },
     initialize: function() {
         this.on('change', this.barreAction);
-        //this.on('change:tableId', this.changeTable);
+        this.on('change:tableId', function() {
+            app.views.header.render()
+        });
     },
     changeTable: function() {
         app.views.app.changeTable(this.tableId);
     },
     annuler: function() {
         app.collections.commande.reset();
+        if (typeof(app.views.popup) === 'object') {
+            app.views.popup.remove();
+        }
+        app.snapper.close();
         this.clear().set(this.defaults);
     },
     barreAction: function() {

@@ -128,6 +128,7 @@ app.Collections.commande = Backbone.Collection.extend({
     },
 
     enregister: function(table_id) {
+
         $.ajax({
             type: 'POST',
             xhrFields: {
@@ -144,6 +145,8 @@ app.Collections.commande = Backbone.Collection.extend({
             success: function() {
                 app.infos.annuler();
                 navigator.notification.alert('La commande a été enregistrée');
+
+
             },
         });
     },

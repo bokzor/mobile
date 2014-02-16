@@ -12,14 +12,19 @@ app.Models.user = Backbone.Model.extend({
 
     fetchData: function() {
         if (this.get('logged') == true) {
-            app.routes.navigate('commande', {
-                trigger: true,
-                replace: true
-            });
+
             // si l'utilisateur est loggé on va rechercher les données
-            app.user.fetch();
-            app.collections.articles.fetch();
-            app.collections.categories.fetch();
+            this.fetch({
+                success: function() {
+                    app.routes.navigate('commande', {
+                        trigger: true,
+                        replace: true
+                    });
+                    app.collections.articles.fetch();
+                    app.collections.categories.fetch();
+                }
+            });
+
         } else {
             app.routes.navigate('login', {
                 trigger: true,
@@ -29,6 +34,8 @@ app.Models.user = Backbone.Model.extend({
     },
     logout: function() {
         console.log('action logout');
+        // on ecoute l'evenement close des slides. Lorsqu'on est sur que celui-ci est fermé.
+        // On deconnecte l'utilisateur et on supprime l'application
         app.snapper.on('close', function() {
             var url = app.config.url + '/logout';
             // on supprime les cookies sur le serveur distant
@@ -65,6 +72,7 @@ app.Models.user = Backbone.Model.extend({
                     app.user.set({
                         logged: false
                     });
+                    navigator.notification.alert('Mot de passe incorrect.');
                 }
             },
             error: function(request, textStatus, errorThrown) {

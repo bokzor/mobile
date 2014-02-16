@@ -1,6 +1,12 @@
 app.Views.PopupView = Backbone.View.extend({
     id: 'myPopover',
     className: 'popover',
+
+    initialize: function() {
+        if (typeof(app.views.popup) === 'object') {
+            app.views.popup.remove();
+        }
+    },
     template: _.template('<header class="popover-header">' +
         '<a id="fermer-pop" class="button">Annuler</a>' +
         '<h3 class="title"><%= titre %></h3>' +
@@ -66,7 +72,7 @@ app.Views.PopupView = Backbone.View.extend({
 
         };
         this.$el.html(this.template(options));
-        $('#content').prepend(this.el);
+        $('#content').after(this.el);
         this.$el.find('input').focus();
     },
     // affiche un choix entre qr code et numéro de table
@@ -77,7 +83,7 @@ app.Views.PopupView = Backbone.View.extend({
             titre: '',
         };
         this.$el.html(this.template(options));
-        $('#content').prepend(this.el);
+        $('#content').after(this.el);
         this.$el.find('input').focus();
     },
     // valide l'input de la table
@@ -105,7 +111,7 @@ app.Views.PopupView = Backbone.View.extend({
             titre: '',
         };
         this.$el.html(this.template(options));
-        $('#content').prepend(this.el);
+        $('#content').after(this.el);
         this.$el.find('input').focus();
     },
     // valide le qr code de la table
@@ -138,7 +144,7 @@ app.Views.PopupView = Backbone.View.extend({
 
         };
         this.$el.html(this.template(options));
-        $('#content').prepend(this.el);
+        $('#content').after(this.el);
         this.$el.find('input').focus();
     },
     optionsCommande: function(id) {
@@ -151,7 +157,7 @@ app.Views.PopupView = Backbone.View.extend({
             titre: '',
         };
         this.$el.html(this.template(options));
-        $('#content').prepend(this.el);
+        $('#content').after(this.el);
         this.$el.find('input').focus();
     },
     optionsOk: function() {
@@ -188,7 +194,7 @@ app.Views.PopupView = Backbone.View.extend({
                 contenu: this.templateCommanderOptions()
             };
             this.$el.html(this.template(options));
-            $('#content').prepend(this.el);
+            $('#content').after(this.el);
             this.$el.find('input').focus();
         }
     },
@@ -201,7 +207,7 @@ app.Views.PopupView = Backbone.View.extend({
 
         };
         this.$el.html(this.template(options));
-        $('#content').prepend(this.el);
+        $('#content').after(this.el);
     },
 
 

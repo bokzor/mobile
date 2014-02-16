@@ -18,6 +18,7 @@ head.js(
     'js/mobile/app/models/commande.js',
     'js/mobile/app/models/live.js',
 
+    'js/mobile/app/views/header.js',
     'js/mobile/app/views/articles.js',
     'js/mobile/app/views/users.js',
     'js/mobile/app/views/cats.js',

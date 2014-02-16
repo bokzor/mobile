@@ -41,6 +41,7 @@ app.Routes.routeur = Backbone.Router.extend({
         });
     },
     login: function() {
+        $('#content').addClass('login');
         console.log('route login');
         if (app.views.login === undefined) {
             app.views.login = new app.Views.LoginView({
@@ -50,12 +51,15 @@ app.Routes.routeur = Backbone.Router.extend({
         app.views.login.render();
     },
     commande: function() {
+        $('#content').removeClass('login');
         console.log('route commande');
         if (app.views.app === undefined) {
+            console.log('creation of the application');
             app.views.app = new app.Views.App({
                 el: $('#content')
             });
         } else {
+            console.log('application already exist');
             app.views.app.render();
         }
 
