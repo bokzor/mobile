@@ -45,7 +45,7 @@ head.ready(function() {
     }
     var iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
     if (iOS) {
-        $(document).on('focus', 'select, input, textarea', function() {
+        $(document).on('focus click', 'select, input, textarea', function() {
             $('.black-overlay, #barre-action').hide();
         });
         $(document).on('blur', 'select, input, textarea', function() {

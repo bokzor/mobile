@@ -6,11 +6,15 @@ app.Views.HeaderView = Backbone.View.extend({
         '<h1 class="title"><% if(tableId!== -1) { %>Table : <%= tableId %> <% } %> </h1>' +
         '<button class="button" id="toggle-right"><span class="icon-cart"></span><span id="count-basket" class="count">0</span></button>'),
     render: function() {
+        console.log('render the Header');
         this.$el.html(this.template({
-            tableId: app.infos.get('tableId')
+            tableId: this.model.get('tableId')
         }));
         return this;
     },
+    initialize: function() {
+        this.model.on('change:tableId', this.render, this);
+    }
 })
 
 

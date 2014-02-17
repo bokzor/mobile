@@ -1,6 +1,5 @@
 app.Models.article = Backbone.Model.extend({
     defaults: {},
-    initialize: function Doc() {}
 });
 
 app.Collections.articles = Backbone.Collection.extend({
@@ -37,16 +36,12 @@ app.Models.infos = Backbone.Model.extend({
     defaults: {
         tableId: -1,
         commandeId: -1,
-        page: '/',
         bancontact: 0,
         cash: 0,
         statutId: 0,
     },
     initialize: function() {
         this.on('change', this.barreAction);
-        this.on('change:tableId', function() {
-            app.views.header.render()
-        });
     },
     changeTable: function() {
         app.views.app.changeTable(this.tableId);
@@ -57,7 +52,13 @@ app.Models.infos = Backbone.Model.extend({
             app.views.popup.remove();
         }
         app.snapper.close();
-        this.clear().set(this.defaults);
+        //this.clear().set(this.defaults);
+        this.set({
+            commandeId: -1,
+            bancontact: 0,
+            cash: 0,
+            statutId: 0
+        });
     },
     barreAction: function() {
         if (this.hasChanged("commandeId")) {

@@ -34,7 +34,6 @@ app.Views.SnapLeftView = Backbone.View.extend({
     profile: _.template('<div class="container-image-profile"><div class="dummy"><%= first_name %>  <%= last_name %></div>' +
         '<div class="snap-left-login-profile" style="background-image:url(<%= imageUrl %>)">' +
         '</div></div>'),
-
     menus: _.template('<ul class="list">' +
         '<li><a class="icon icon-qrcode" id="qr">Votre code QR </a></li>' +
         '<li><a class="icon icon-facebook" id="lier-facebook">Lier a Facebook</a></li>' +

@@ -152,11 +152,8 @@ app.Collections.commande = Backbone.Collection.extend({
     },
     modifier: function() {
         if (app.infos.get('statutId') !== 0 && app.infos.get('statutId') !== 1) {
-            console.log(app.infos.get('statutId'));
-
             navigator.notification.alert('Vous ne pouvez plus modifier la commande');
         } else {
-            console.log(app.infos.get('statutId'));
             $.ajax({
                 type: 'POST',
                 xhrFields: {

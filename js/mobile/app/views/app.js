@@ -1,9 +1,5 @@
 app.Views.App = Backbone.View.extend({
-    template: _.template('<header class="bar-title">' +
-        '<button class="button" id="toggle-left"><span class="icon-menu"></span></button>' +
-        '<h1 class="title"><% if(tableId!== -1) { %>Table : <%= tableId %> <% } %> </h1>' +
-        '<button class="button" id="toggle-right"><span class="icon-cart"></span><span id="count-basket" class="count">0</span></button>' +
-        '</header>'),
+
     templateRecherche: _.template('<div class="bar-standard bar-header-secondary">' +
         '<input type="search" id="recherche" placeholder="Recherche">' +
         '</div>'),
@@ -22,8 +18,11 @@ app.Views.App = Backbone.View.extend({
     },
     render: function() {
         console.log('render app');
-        app.views.header = new app.Views.HeaderView();
+        app.views.header = new app.Views.HeaderView({
+            model: app.infos
+        });
 
+        // on supprime le loader
         if (app.views.loader !== undefined) {
             app.views.loader.remove();
         }
@@ -31,6 +30,7 @@ app.Views.App = Backbone.View.extend({
         this.$el.html(app.views.header.render().el);
         this.$el.append(this.templateRecherche() + this.templateContent());
 
+        // on affiche le snap gauche et droit
         app.views.snap = new app.Views.SnapView({
             model: app.user
         });
