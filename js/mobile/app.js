@@ -11,7 +11,7 @@ var app = {
     routes: {},
     config: {
         protocol: 'http://',
-        url: 'http://liverorder.eu',
+        url: 'http://liveorder.eu',
         ip: 'liveorder.eu',
     },
 

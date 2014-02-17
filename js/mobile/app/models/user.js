@@ -14,16 +14,13 @@ app.Models.user = Backbone.Model.extend({
         if (this.get('logged') == true) {
 
             // si l'utilisateur est loggé on va rechercher les données
-            this.fetch({
-                success: function() {
-                    app.routes.navigate('commande', {
-                        trigger: true,
-                        replace: true
-                    });
-                    app.collections.articles.fetch();
-                    app.collections.categories.fetch();
-                }
+            this.fetch();
+            app.routes.navigate('commande', {
+                trigger: true,
+                replace: true
             });
+            app.collections.articles.fetch();
+            app.collections.categories.fetch();
 
         } else {
             app.routes.navigate('login', {
