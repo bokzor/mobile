@@ -87,12 +87,10 @@ app.Views.UserView = Backbone.View.extend({
         var infos = new Array();
         infos['username'] = username;
         app.collections.commande.chargerClient(infos);
-        console.log(username);
         app.routes.navigate('commande', {
             trigger: true,
             replace: true
         });
-        //app.snapper.open('right');
 
     }
 });

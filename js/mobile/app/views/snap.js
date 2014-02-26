@@ -16,14 +16,20 @@ app.Views.SnapView = Backbone.View.extend({
         app.snapper = new Snap({
             element: document.getElementById('content')
         });
-
-
+        if (getMobileWidth() > 599) {
+            app.snapper.disable();
+        }
         // si on change un attribut de l'utilisateur on réaffiche la vue
         this.model.on('sync', function() {
             this.snapLeft.render();
         }, this);
 
     },
+    remove: function() {
+        console.log('remove snap');
+        this.snapRight.remove();
+        this.snapLeft.remove();
+    }
 
 })
 

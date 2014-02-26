@@ -11,6 +11,8 @@ head.js(
     'js/mobile/libs/backbone.js',
     'js/mobile/libs/fastclick.js',
     'js/mobile/libs/jquery.qrcode.js',
+    'js/mobile/libs/detect.js',
+
     'js/mobile/app.js',
 
     'js/mobile/app/models/models.js',

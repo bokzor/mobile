@@ -6,15 +6,14 @@ app.Models.user = Backbone.Model.extend({
         statut: 'client',
     },
     initialize: function() {
-        console.log('utilisateur créé');
         this.on('change:logged', this.fetchData, this);
     },
 
     fetchData: function() {
         if (this.get('logged') == true) {
-
             // si l'utilisateur est loggé on va rechercher les données
             this.fetch();
+            console.log(this);
             app.routes.navigate('commande', {
                 trigger: true,
                 replace: true
@@ -77,6 +76,7 @@ app.Models.user = Backbone.Model.extend({
                 app.user.set({
                     logged: false
                 });
+                navigator.notification.alert('Mot de passe incorrect.');
             }
         });
     },

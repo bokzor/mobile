@@ -27,15 +27,15 @@ app.Views.PopupView = Backbone.View.extend({
 
     templateCommanderTableId: _.template('<ul class="list"><li><input type="number" placeholder="Numéro de table"></li></ul>'),
 
+    // commander par qr code ou table id
     templateCommanderOptions: _.template(
         '<ul class="list"><li><a id="commander-tableId">Numéro de table</a></li>' +
         '<li><a id="commander-scan" >Scanner le QR code</a></li></ul>'),
 
+    // template qui offre les options pour encaisser la commande
     templateEncaisser: _.template('<ul class="list"><li><a data-type="-1" id="encaisser-cash">Cash</a></li>' +
         '<li><a id="encaisser-bancontact" data-type="-2" >Bancontact</a></li>' +
         '<li><a id="encaisser-offrir" data-type="-3">Offrir</a></li>'),
-
-
 
     templateOptionsCommande: _.template('<ul class="list">' +
         '<li><input data-id="<%= id %>" type="number" placeholder="Nombre d\'articles"></li>' +
@@ -129,6 +129,7 @@ app.Views.PopupView = Backbone.View.extend({
         this.close();
     },
     chargerClientRecheche: function() {
+        this.close();
         console.log('recherche d\'un client');
         app.routes.navigate('client', {
             trigger: true,

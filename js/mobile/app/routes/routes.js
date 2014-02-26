@@ -43,12 +43,8 @@ app.Routes.routeur = Backbone.Router.extend({
     login: function() {
         $('#content').addClass('login');
         console.log('route login');
-        if (app.views.login === undefined) {
-            app.views.login = new app.Views.LoginView({
-                el: $('#content')
-            });
-        }
-        app.views.login.render();
+        app.views.login = new app.Views.LoginView();
+
     },
     commande: function() {
         $('#content').removeClass('login');
@@ -66,7 +62,6 @@ app.Routes.routeur = Backbone.Router.extend({
     },
     client: function() {
         console.log('route recherche client');
-        app.views.app.delete();
         new app.Views.SearchUser({
             el: $('#content')
         }).render();

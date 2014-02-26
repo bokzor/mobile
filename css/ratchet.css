@@ -985,7 +985,7 @@ button.button-block {
 
 .popover {
   position: fixed;
-  top: 55px;
+  top: 65px;
   left: 50%;
   z-index: 20;
   width: 280px;
@@ -1137,7 +1137,7 @@ button.button-block {
   position: fixed; 
   top: 0;
   opacity: 0;
-  z-index: 11; 
+  z-index: 12; 
   width: 100%;
   min-height: 100%;
   overflow: hidden;
@@ -1296,7 +1296,7 @@ form.login{
   text-align: center;
 }
 .modal > canvas{
-  padding-top: 40%;
+  padding-top: 30px;
 }
 .modal{
   text-align: center;

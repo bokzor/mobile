@@ -18,36 +18,50 @@ app.Views.App = Backbone.View.extend({
     },
     render: function() {
         console.log('render app');
-        app.views.header = new app.Views.HeaderView({
-            model: app.infos
-        });
 
         // on supprime le loader
         if (app.views.loader !== undefined) {
             app.views.loader.remove();
         }
 
+
         this.$el.html(app.views.header.render().el);
         this.$el.append(this.templateRecherche() + this.templateContent());
 
-        // on affiche le snap gauche et droit
-        app.views.snap = new app.Views.SnapView({
-            model: app.user
-        });
-        app.views.barreAction = new app.Views.BarreActionView();
-        app.collections.commandeLive = new app.Collections.commandeLive();
-        app.views.live = new app.Views.Live({
-            collection: app.collections.commandeLive
-        });
+
+
+
         app.views.cats.render();
 
         return this;
     },
     initialize: function() {
+        // on affiche le header
+        app.views.header = new app.Views.HeaderView({
+            model: app.infos
+        });
+        // on affiche le snap gauche et droit
+        app.views.snap = new app.Views.SnapView({
+            model: app.user
+        });
+        // on affiche la barre d'action
+        app.views.barreAction = new app.Views.BarreActionView();
+
+
+        app.collections.commandeLive = new app.Collections.commandeLive();
+
+        // on affiche les commandes lives
+        app.views.live = new app.Views.Live({
+            collection: app.collections.commandeLive
+        });
+
+
         this.render();
     },
     delete: function() {
+        console.log('app remove');
         app.snapper.disable();
+        app.views.login.remove();
         app.views.snap.remove();
         app.views.barreAction.remove();
         app.collections.commandeLive.close();

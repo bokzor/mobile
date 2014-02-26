@@ -1,4 +1,5 @@
 app.Views.LoginView = Backbone.View.extend({
+    id: 'content',
     className: 'login',
     template: _.template('<form id="loginForm">' +
         '<img src="img/LiveOrder.png" alt="">' +
@@ -11,7 +12,14 @@ app.Views.LoginView = Backbone.View.extend({
         '<span>S\'enregister</span>' +
         '</div>'),
     render: function() {
+        console.log('render login view');
+        console.log(this.$el);
         this.$el.html(this.template());
+        $('body').html(this.$el);
+    },
+    initialize: function() {
+        console.log('initialize login view');
+        this.render();
     },
     events: {
         "click #login-facebook": "loginFacebook",
@@ -30,6 +38,7 @@ app.Views.LoginView = Backbone.View.extend({
         app.views.loader = new app.Views.LoaderView();
         app.user.loginFacebook();
     },
+
 
 
 });
