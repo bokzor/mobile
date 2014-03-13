@@ -6,6 +6,10 @@ app.Views.App = Backbone.View.extend({
     templateContent: _.template('<div class="content"></div>'),
     events: {
         "input #recherche": "recherche",
+        "click #recherche": function() {
+            $('#recherche').val('');
+            app.collections.articles.recherche('');
+        }
     },
     recherche: function(e) {
         app.collections.articles.recherche($(e.target).val());
@@ -37,9 +41,7 @@ app.Views.App = Backbone.View.extend({
     },
     initialize: function() {
         // on affiche le header
-        $('#recherche').on('click', function() {
-            $(this).val('');
-        });
+
         app.views.header = new app.Views.HeaderView({
             model: app.infos
         });

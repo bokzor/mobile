@@ -50,10 +50,11 @@ app.Routes.routeur = Backbone.Router.extend({
         $('#content').removeClass('login');
         console.log('route commande');
         if (app.views.app === undefined) {
-            console.log('creation of the application');
             app.views.app = new app.Views.App({
                 el: $('#content')
             });
+            console.log('creation of the application');
+
         } else {
             console.log('application already exist');
             app.views.app.render();
