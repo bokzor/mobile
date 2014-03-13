@@ -5,6 +5,9 @@ head.js(
     'barcodescanner.js',
     'js/mobile/libs/zepto.js',
     'js/mobile/libs/touch.js',
+    'js/mobile/libs/fx.js',
+    'js/mobile/libs/fx_methods.js',
+
     'js/mobile/libs/snap.js',
     'js/mobile/libs/prefixfree.js',
     'js/mobile/libs/underscore.js',

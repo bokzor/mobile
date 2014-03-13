@@ -96,6 +96,8 @@ app.Views.SnapRightView = Backbone.View.extend({
                 app.snapper.open('right');
             }
         });
+        FastClick.attach(document.getElementById('right-drawer'));
+
         this.commandeView = new app.Views.Commande({
             collection: app.collections.commande
         })

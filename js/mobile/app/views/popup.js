@@ -242,7 +242,10 @@ app.Views.PopupView = Backbone.View.extend({
 
     close: function() {
         console.log('close popup');
-        this.remove();
+        this.$el.fadeOut('fast', function() {
+            this.remove();
+        });
+
     },
 
 });

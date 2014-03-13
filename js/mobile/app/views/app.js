@@ -37,6 +37,9 @@ app.Views.App = Backbone.View.extend({
     },
     initialize: function() {
         // on affiche le header
+        $('#recherche').on('click', function() {
+            $(this).val('');
+        });
         app.views.header = new app.Views.HeaderView({
             model: app.infos
         });
