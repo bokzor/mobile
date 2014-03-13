@@ -39,7 +39,7 @@ app.Models.user = Backbone.Model.extend({
             app.user.set({
                 logged: false
             });
-            app.views.app.delete();
+            //app.views.app.delete();
             app.routes.navigate('login', {
                 trigger: true,
                 replace: true
