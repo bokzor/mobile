@@ -11,8 +11,8 @@ var app = {
     routes: {},
     config: {
         protocol: 'http://',
-        url: 'http://bassecour.dyndns.org:8888',
-        ip: 'bassecour.dyndns.org:8888',
+        url: 'http://liveorder.eu',
+        ip: 'liveorder.eu',
     },
 
     init: function() {

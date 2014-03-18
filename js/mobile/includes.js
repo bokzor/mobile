@@ -68,6 +68,5 @@ head.ready(function() {
         // on active le fast click pour le mobile
         FastClick.attach(document.body);
 
-
     });
 });
