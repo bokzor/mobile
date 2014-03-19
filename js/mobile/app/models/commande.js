@@ -128,6 +128,7 @@ app.Collections.commande = Backbone.Collection.extend({
 
     enregister: function(table_id) {
 
+        console.log('Nous allons tenter d\'enregistrer la commande');
         $.ajax({
             type: 'POST',
             xhrFields: {
