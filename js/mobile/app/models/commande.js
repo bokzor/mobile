@@ -129,6 +129,26 @@ app.Collections.commande = Backbone.Collection.extend({
     enregister: function(table_id) {
 
         console.log('Nous allons tenter d\'enregistrer la commande');
+
+        $.ajax({
+            type: 'POST',
+            url: app.config.url + '/save/commande/' + table_id,
+            data: {
+                table_id: table_id,
+                commande: app.collections.commande.toJSON(),
+                commande_id: app.infos.get('commandeId'),
+            },
+            // Il faudra lancer l'impression du ticket ici
+            success: function() {
+                app.infos.annuler();
+                navigator.notification.alert('La commande a été enregistrée');
+            },
+            error: function() {
+                console.log('Erreur lors de l\'enregistrement de la commande');
+            }
+        });
+
+
         $.ajax({
             type: 'POST',
             xhrFields: {
