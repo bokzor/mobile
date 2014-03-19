@@ -143,6 +143,3 @@ body.snapjs-right #left-drawer{
   margin-top: 20px;
   background-size: 150px 150px;
 }
-.bar-title, .bar-standard, .content{
-  -webkit-transform: inherit;
-}
