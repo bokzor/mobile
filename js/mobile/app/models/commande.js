@@ -28,7 +28,6 @@ app.Collections.commande = Backbone.Collection.extend({
     model: app.Models.articleCommande,
     initialize: function() {},
     count: function() {
-        console.log('count');
         var total = 0;
         app.collections.commande.each(function(article) {
             var articlePrix = parseFloat(article.get('prix'));
@@ -145,9 +144,10 @@ app.Collections.commande = Backbone.Collection.extend({
             success: function() {
                 app.infos.annuler();
                 navigator.notification.alert('La commande a été enregistrée');
-
-
             },
+            error: function() {
+                console.log('Erreur lors de l\'enregistrement de la commande');
+            }
         });
     },
     modifier: function() {
