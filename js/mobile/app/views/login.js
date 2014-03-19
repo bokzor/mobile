@@ -1,6 +1,6 @@
 app.Views.LoginView = Backbone.View.extend({
     id: 'content',
-    className: 'login',
+    className: 'login snap-content',
     template: _.template('<form id="loginForm">' +
         '<img src="img/LiveOrder.png" alt="">' +
         '<input id="username" type="text" placeholder="Adresse Email">' +
