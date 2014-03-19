@@ -35,18 +35,28 @@ app.Models.user = Backbone.Model.extend({
         app.snapper.on('close', function() {
             var url = app.config.url + '/logout';
             // on supprime les cookies sur le serveur distant
-            $.get(url);
-            app.user.set({
-                logged: false
-            });
-            app.views.app.delete();
-            app.routes.navigate('login', {
-                trigger: true,
-                replace: true
-            });
-        });
-        app.snapper.close();
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function(data, textStatus, request) {
+                    app.user.set({
+                        logged: false
+                    });
+                    app.views.app.delete();
+                    app.routes.navigate('login', {
+                        trigger: true,
+                        replace: true
+                    });
 
+                },
+                error: function(request, textStatus, errorThrown) {
+
+                }
+            });
+
+        });
+
+        app.snapper.close();
 
     },
     validerLogin: function(username, password) {
