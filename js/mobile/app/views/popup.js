@@ -231,6 +231,7 @@ app.Views.PopupView = Backbone.View.extend({
         // pas de table id ni de commande , ca veut dire que c'est une nouvelle commande et pas une modif
         if (app.infos.get('commandeId') === -1) {
             app.collections.commande.enregister(input.val());
+            console.log(input.val());
         } else {
             console.log('app.infos == -1');
         }
