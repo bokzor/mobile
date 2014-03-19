@@ -151,10 +151,6 @@ app.Collections.commande = Backbone.Collection.extend({
 
         $.ajax({
             type: 'POST',
-            xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
             url: app.config.url + '/save/commande/' + table_id,
             data: {
                 table_id: table_id,
@@ -177,10 +173,6 @@ app.Collections.commande = Backbone.Collection.extend({
         } else {
             $.ajax({
                 type: 'POST',
-                xhrFields: {
-                    withCredentials: true
-                },
-                crossDomain: true,
                 url: app.config.url + '/modif/commande',
                 data: {
                     table_id: app.infos.get('tableId'),
@@ -228,10 +220,6 @@ app.Collections.commande = Backbone.Collection.extend({
         $.ajax({
             type: 'POST',
             url: url,
-            xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
             data: {
                 bancontact: app.infos.get('bancontact'),
                 cash: app.infos.get('cash'),
