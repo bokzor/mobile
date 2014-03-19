@@ -226,10 +226,13 @@ app.Views.PopupView = Backbone.View.extend({
         this.close();
     },
     commanderOk: function() {
+        console.log('On essaye d envoyer la commande');
         var input = this.$el.find('input');
         // pas de table id ni de commande , ca veut dire que c'est une nouvelle commande et pas une modif
         if (app.infos.get('commandeId') === -1) {
             app.collections.commande.enregister(input.val());
+        } else {
+            console.log('app.infos == -1');
         }
         this.close();
     },
