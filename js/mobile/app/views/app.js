@@ -22,6 +22,7 @@ app.Views.App = Backbone.View.extend({
     },
     render: function() {
         console.log('render app');
+        console.log(this.el);
 
         // on supprime le loader
         if (app.views.loader !== undefined) {
@@ -31,7 +32,6 @@ app.Views.App = Backbone.View.extend({
 
         this.$el.html(app.views.header.render().el);
         this.$el.append(this.templateRecherche() + this.templateContent());
-
 
 
 

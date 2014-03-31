@@ -53,7 +53,12 @@ app.Collections.commandeLive = Backbone.Collection.extend({
                 }
             }
             if (new_order === true || ready_order === true) {
-                navigator.notification.beep(1);
+                try {
+                    navigator.notification.beep(1);
+                } catch (e) {
+                    console.log(e);
+                }
+
             }
 
         });

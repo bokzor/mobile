@@ -1,7 +1,11 @@
 @media all and (min-width: 600px) {
+  /* le slide droit est visible. */
   #right-drawer{
     width: 40%;
     z-index: 11;
+     /* on desactive donc l'effet scale */
+    -webkit-transform: scale(1,1);
+    opacity: 1;
   }
   .popover{
     left: 30%;
@@ -22,28 +26,34 @@
 
 /* css pour version tablette */
 @media all and (min-width: 800px) {
+  /* les slides sont visibles ont désactives donc l'effet scale */
 
   #right-drawer{
     width: 30%;
     z-index: 11;
+     /* on desactive donc l'effet scale */
+    -webkit-transform: scale(1,1);
+    opacity: 1;
   }
   .popover{
     left: 50%;
   }
   .content{
-    width: inherit;
-    left: 25%;
+
   }
   #left-drawer{
     width: 25%;
     z-index: 11;
+     /* on desactive donc l'effet scale */
+    -webkit-transform: scale(1,1);
+    opacity: 1;
   }
   #content{
     width: 45%;
     margin-left: 25%;    
   }
   .snap-drawers{
-    top: 97px;
+    top: 0px;
   }
   #toggle-left{
     display: none;

@@ -29,32 +29,39 @@ app.Models.user = Backbone.Model.extend({
         }
     },
     logout: function() {
-        console.log('action logout');
         // on ecoute l'evenement close des slides. Lorsqu'on est sur que celui-ci est fermé.
         // On deconnecte l'utilisateur et on supprime l'application
-        app.snapper.on('close', function() {
-            var url = app.config.url + '/logout';
-            // on supprime les cookies sur le serveur distant
-            $.ajax({
-                type: 'GET',
-                url: url,
-                success: function(data, textStatus, request) {
-                    app.user.set({
-                        logged: false
-                    });
-                    app.views.app.delete();
-                    app.routes.navigate('login', {
-                        trigger: true,
-                        replace: true
-                    });
-
-                },
-                error: function(request, textStatus, errorThrown) {
-
-                }
-            });
+        //app.snapper.on('close', function() {
+        console.log('close trigger');
+        var url = app.config.url + '/logout';
+        // on supprime les cookies sur le serveur distant
+        //});
+        localStorage.connectOk = false;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            complete: function(data, textStatus, request) {
+                app.user.set({
+                    logged: false
+                });
+                app.routes.navigate('login', {
+                    trigger: true,
+                    replace: true
+                });
+                console.log('action logout');
+            },
 
         });
+        // });
+        var snapState = app.snapper.state();
+        if (snapState.state == 'closed') {
+            console.log(app.snapper.close())
+
+            app.snapper.trigger('close');
+        } else {
+            console.log(snapState);
+            console.log(app.snapper.close())
+        }
 
         app.snapper.close();
 
@@ -73,12 +80,19 @@ app.Models.user = Backbone.Model.extend({
                     app.user.set({
                         logged: true
                     });
+                    localStorage.connectOk = 'ok';
+                    localStorage.username = username;
+                    localStorage.password = password
+
+                    return true;
                 } else {
                     app.views.loader.remove();
                     app.user.set({
                         logged: false
                     });
                     navigator.notification.alert('Mot de passe incorrect.');
+
+                    return false;
                 }
             },
             error: function(request, textStatus, errorThrown) {
@@ -86,7 +100,9 @@ app.Models.user = Backbone.Model.extend({
                 app.user.set({
                     logged: false
                 });
-                navigator.notification.alert('Mot de passe incorrect.');
+                //navigator.notification.alert('Mot de passe incorrect.');
+
+                return false;
             }
         });
     },

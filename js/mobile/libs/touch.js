@@ -158,7 +158,7 @@
     $(window).on('scroll', cancelAll)
   })
 
-;    ['swipe', 'swipeLeft', 'swipeRight', 'swipeUp', 'swipeDown',
+  ;['swipe', 'swipeLeft', 'swipeRight', 'swipeUp', 'swipeDown',
     'doubleTap', 'tap', 'singleTap', 'longTap'].forEach(function(eventName){
     $.fn[eventName] = function(callback){ return this.on(eventName, callback) }
   })

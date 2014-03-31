@@ -7,38 +7,15 @@ app.Routes.routeur = Backbone.Router.extend({
     },
     home: function() {
         // on affiche les catégories
-        $.ajax({
-            type: 'POST',
-            url: app.config.url + '/basic_auth',
-            success: function(data, textStatus, request) {
-                if (data === 'client' || data === 'serveur') {
-                    console.log(data);
-                    console.log('go commande');
-                    app.user.set({
-                        logged: true
-                    });
-                    app.routes.navigate('commande', {
-                        trigger: true,
-                        replace: true
-                    });
-                } else {
-                    app.routes.navigate('login', {
-                        trigger: true,
-                        replace: true
-                    });
-                }
-            },
-            error: function(request, textStatus, errorThrown) {
-                app.routes.navigate('login', {
-                    trigger: true,
-                    replace: true
-                });
-            }
-        });
-        app.routes.navigate('login', {
-            trigger: true,
-            replace: true
-        });
+        if (localStorage.connectOK == 'ok') {
+            app.user.validerLogin(localStorage.username, localStorage.password);
+        } else {
+            app.routes.navigate('login', {
+                trigger: true,
+                replace: true
+            });
+        }
+
     },
     login: function() {
         $('#content').addClass('login');
@@ -47,6 +24,12 @@ app.Routes.routeur = Backbone.Router.extend({
 
     },
     commande: function() {
+        if (app.user.get('logged') == false) {
+            app.routes.navigate('home', {
+                trigger: true,
+                replace: true
+            });
+        }
         $('#content').removeClass('login');
         console.log('route commande');
         if (app.views.app === undefined) {

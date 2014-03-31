@@ -45,7 +45,7 @@
 body{
 	background: #34495e;
 	font-family: 'Lato', Calibri, Arial, sans-serif;
- 	background: url(../img/login.png) no-repeat center center fixed;
+ 	background: #2c3e50;
     -webkit-background-size: cover; /* For WebKit*/
     -moz-background-size: cover;    /* Mozilla*/
     -o-background-size: cover;      /* Opera*/

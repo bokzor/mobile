@@ -17,11 +17,13 @@ app.Views.SnapView = Backbone.View.extend({
             element: document.getElementById('content')
         });
         if (getMobileWidth() > 599) {
-            app.snapper.disable();
+            //app.snapper.disable();
         }
+
         // si on change un attribut de l'utilisateur on réaffiche la vue
         this.model.on('sync', function() {
             this.snapLeft.render();
+            console.log('user sync');
         }, this);
 
     },
@@ -67,12 +69,14 @@ app.Views.SnapLeftView = Backbone.View.extend({
             last_name: app.user.get('last_name'),
             first_name: app.user.get('first_name')
         }) + this.menus());
+        console.log('render');
     },
     initialize: function() {
         $(document).on('click', '#toggle-left', function() {
             var data = app.snapper.state();
             if (data['state'] !== 'closed') {
                 app.snapper.close();
+                $('body').removeClass('snapjs-left');
             } else {
                 app.snapper.open('left');
             }

@@ -25,6 +25,25 @@ html, body {
           transform: translate3d(0, 0, 0);
 }
 
+#left-drawer{
+  -webkit-transform: scale(0.8,0.8);
+  -webkit-transition: all 0.3s ease;
+  opacity: 0.5;  
+}
+
+#right-drawer{
+  -webkit-transform: scale(0.8,0.8);
+  -webkit-transition: all 0.3s ease;
+  opacity: 0.5;  
+}
+
+body.snapjs-left #left-drawer, body.snapjs-right #right-drawer{
+  -webkit-transform: scale(1,1);
+  -webkit-transition: all 0.5s;
+  opacity: 1;    
+}
+
+
 .snap-drawers {
   position: absolute;
   top: 0;
@@ -80,12 +99,12 @@ html, body {
 }
 
 body.snapjs-left #right-drawer{
-  -webkit-transform: translate(266px, 0);
+  -webkit-transform: translate(265px, 0);
   -webkit-transition: 0.3s ease;
 }
 
 body.snapjs-right #left-drawer{
-  -webkit-transform: translate(-266px, 0);
+  -webkit-transform: translate(-265px, 0);
   -webkit-transition: 0.3s ease;
 }
 
