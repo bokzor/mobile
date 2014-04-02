@@ -59,10 +59,10 @@ head.ready(function() {
     }
 
     console.log('head ready');
-    $(window).ready(function() {
+   // $(window).ready(function() {
 
 
-        // document.addEventListener('deviceready', function() {
+        document.addEventListener('deviceready', function() {
         console.log('device ready');
         checkConnection();
         app.init()
@@ -70,6 +70,6 @@ head.ready(function() {
         // on active le fast click pour le mobile
         FastClick.attach(document.body);
 
-        //});
-    })
+        });
+   // })
 });
