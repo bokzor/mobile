@@ -20,12 +20,6 @@ app.Views.SnapView = Backbone.View.extend({
             //app.snapper.disable();
         }
 
-        // si on change un attribut de l'utilisateur on réaffiche la vue
-        this.model.on('sync', function() {
-            this.snapLeft.render();
-            console.log('user sync');
-        }, this);
-
     },
     remove: function() {
         console.log('remove snap');
@@ -53,25 +47,8 @@ app.Views.SnapLeftView = Backbone.View.extend({
         'click #logout': 'logout',
         'click #qr': 'qrcode',
     },
-    facebook: function() {
-        app.user.loginFacebook();
-    },
-    logout: function() {
-        app.user.logout();
-    },
-    qrcode: function() {
-        app.modal = new app.Views.ModalView().qrcode(app.user.get('hash'));
-    },
-    render: function() {
-        var imageUrl = app.config.url + '/uploads/avatar/' + app.user.get('avatar');
-        this.$el.html(this.profile({
-            imageUrl: imageUrl,
-            last_name: app.user.get('last_name'),
-            first_name: app.user.get('first_name')
-        }) + this.menus());
-        console.log('render');
-    },
     initialize: function() {
+        var that = this;
         $(document).on('click', '#toggle-left', function() {
             var data = app.snapper.state();
             if (data['state'] !== 'closed') {
@@ -82,9 +59,31 @@ app.Views.SnapLeftView = Backbone.View.extend({
             }
         });
 
+        this.model.on('change', function() {
+            that.render();
+        })
+
         this.render();
         return this;
     },
+    facebook: function() {
+        app.user.loginFacebook();
+    },
+    logout: function() {
+        app.user.logout();
+    },
+    qrcode: function() {
+        app.modal = new app.Views.ModalView().qrcode(app.user.get('hash'));
+    },
+    render: function() {
+        var imageUrl = app.config.url + '/uploads/avatar/' + this.model.get('avatar');
+        this.$el.html(this.profile({
+            imageUrl: imageUrl,
+            last_name: this.model.get('last_name'),
+            first_name: this.model.get('first_name')
+        }) + this.menus());
+    },
+
 });
 
 

@@ -11,9 +11,6 @@ app.Models.user = Backbone.Model.extend({
 
     fetchData: function() {
         if (this.get('logged') == true) {
-            // si l'utilisateur est loggé on va rechercher les données
-            this.fetch();
-            console.log(this);
             app.routes.navigate('commande', {
                 trigger: true,
                 replace: true
@@ -31,12 +28,9 @@ app.Models.user = Backbone.Model.extend({
     logout: function() {
         // on ecoute l'evenement close des slides. Lorsqu'on est sur que celui-ci est fermé.
         // On deconnecte l'utilisateur et on supprime l'application
-        //app.snapper.on('close', function() {
-        console.log('close trigger');
-        var url = app.config.url + '/logout';
-        // on supprime les cookies sur le serveur distant
-        //});
+
         localStorage.connectOk = false;
+        var url = app.config.url + '/logout';
         $.ajax({
             type: 'GET',
             url: url,
@@ -52,16 +46,6 @@ app.Models.user = Backbone.Model.extend({
             },
 
         });
-        // });
-        var snapState = app.snapper.state();
-        if (snapState.state == 'closed') {
-            console.log(app.snapper.close())
-
-            app.snapper.trigger('close');
-        } else {
-            console.log(snapState);
-            console.log(app.snapper.close())
-        }
 
         app.snapper.close();
 
@@ -76,14 +60,18 @@ app.Models.user = Backbone.Model.extend({
                 username: username
             },
             success: function(data, textStatus, request) {
-                if (data === 'client' || data === 'serveur') {
+                var data = $.parseJSON(data);
+                if (data.first_name !== undefined) {
                     app.user.set({
-                        logged: true
+                        logged: true,
+                        first_name: data.first_name,
+                        last_name: data.last_name,
+                        avatar: data.avatar
                     });
+
                     localStorage.connectOk = 'ok';
                     localStorage.username = username;
                     localStorage.password = password
-
                     return true;
                 } else {
                     app.views.loader.remove();
@@ -124,9 +112,15 @@ app.Models.user = Backbone.Model.extend({
                                     type: 'POST',
                                     url: app.config.url + '/facebook_auth',
                                     success: function(data, textStatus, request) {
-                                        app.user.set({
-                                            logged: true
-                                        });
+                                        var data = $.parseJSON(data);
+                                        if (data.first_name !== undefined) {
+                                            app.user.set({
+                                                logged: true,
+                                                first_name: data.first_name,
+                                                last_name: data.last_name,
+                                                avatar: data.avatar
+                                            });
+                                        }
                                     },
                                 });
 
