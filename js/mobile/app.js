@@ -26,6 +26,7 @@ var app = {
         this.collections.categories = new this.Collections.categories;
         this.collections.commande = new this.Collections.commande;
         this.collections.users = new this.Collections.users;
+        this.collections.newCommande = this.Collections.newCommande;
 
         // on cree la vue qui va afficher les catégories
         this.views.cats = new this.Views.CatsView({

@@ -128,7 +128,7 @@ app.Collections.commande = Backbone.Collection.extend({
 
     enregister: function(table_id) {
 
-        $.ajax({
+        /*$.ajax({
             type: 'POST',
             url: app.config.url + '/save/commande/' + table_id,
             data: {
@@ -144,13 +144,25 @@ app.Collections.commande = Backbone.Collection.extend({
             error: function() {
                 console.log('Erreur lors de l\'enregistrement de la commande');
             }
+        }); */
+
+        var commande = new app.Models.newCommande();
+        commande.set({
+            commande: app.collections.commande.toJSON(),
+            table_id: table_id,
+            commande_id: app.infos.get('commandeId'),
+            url: url,
         });
+        app.collections.newCommande.add(commande);
+        app.collections.newCommande.sync();
+        app.infos.annuler();
+        navigator.notification.alert('La commande a été enregistrée');
     },
     modifier: function() {
         if (app.infos.get('statutId') !== 0 && app.infos.get('statutId') !== 1) {
             navigator.notification.alert('Vous ne pouvez plus modifier la commande');
         } else {
-            $.ajax({
+            /* $.ajax({
                 type: 'POST',
                 url: app.config.url + '/modif/commande',
                 data: {
@@ -164,7 +176,19 @@ app.Collections.commande = Backbone.Collection.extend({
                     navigator.notification.alert('La commande a été modifiée');
                 },
 
+            }); */
+
+            var commande = new app.Models.newCommande();
+            commande.set({
+                commande: app.collections.commande.toJSON(),
+                table_id: app.infos.get('tableId'),
+                commande_id: app.infos.get('commandeId'),
+                url: url,
             });
+            app.collections.newCommande.add(commande);
+            app.collections.newCommande.sync();
+            app.infos.annuler();
+            navigator.notification.alert('La commande a été modifiée');
         }
     },
     encaisser: function(type) {
@@ -196,6 +220,7 @@ app.Collections.commande = Backbone.Collection.extend({
             });
         }
         // on envoit les données pour enregistrer la commande
+        /*
         $.ajax({
             type: 'POST',
             url: url,
@@ -212,6 +237,22 @@ app.Collections.commande = Backbone.Collection.extend({
                 app.infos.annuler();
             }
         });
+        */
+        var commande = new app.Models.newCommande();
+        commande.set({
+            bancontact: app.infos.get('bancontact'),
+            cash: app.infos.get('cash'),
+            commande: app.collections.commande.toJSON(),
+            table_id: app.infos.get('tableId'),
+            commande_id: app.infos.get('commandeId'),
+            statut_id: app.infos.get('statut'),
+            url: url,
+        });
+        app.collections.newCommande.add(commande);
+        app.collections.newCommande.sync();
+
+        navigator.notification.alert('La commande a été finalisée');
+        app.infos.annuler();
     },
     deleteArticle: function() {
         this.remove(this.where({

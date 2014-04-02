@@ -12,6 +12,7 @@ head.js(
     'js/mobile/libs/prefixfree.js',
     'js/mobile/libs/underscore.js',
     'js/mobile/libs/backbone.js',
+    'js/mobile/libs/backbone.localStorage.js',
     'js/mobile/libs/fastclick.js',
     'js/mobile/libs/jquery.qrcode.js',
     'js/mobile/libs/detect.js',
@@ -21,6 +22,7 @@ head.js(
     'js/mobile/app/models/models.js',
     'js/mobile/app/models/user.js',
     'js/mobile/app/models/commande.js',
+    'js/mobile/app/models/newCommande.js',
     'js/mobile/app/models/live.js',
 
     'js/mobile/app/views/header.js',
@@ -59,10 +61,10 @@ head.ready(function() {
     }
 
     console.log('head ready');
-   // $(window).ready(function() {
+    // $(window).ready(function() {
 
 
-        document.addEventListener('deviceready', function() {
+    document.addEventListener('deviceready', function() {
         console.log('device ready');
         checkConnection();
         app.init()
@@ -70,6 +72,6 @@ head.ready(function() {
         // on active le fast click pour le mobile
         FastClick.attach(document.body);
 
-        });
-   // })
+    });
+    // })
 });
