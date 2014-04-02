@@ -145,7 +145,7 @@ app.Collections.commande = Backbone.Collection.extend({
                 console.log('Erreur lors de l\'enregistrement de la commande');
             }
         }); */
-
+        var url = app.config.url + '/save/commande/' + table_id;
         var commande = new app.Models.newCommande();
         commande.set({
             commande: app.collections.commande.toJSON(),
@@ -154,7 +154,6 @@ app.Collections.commande = Backbone.Collection.extend({
             url: url,
         });
         app.collections.newCommande.add(commande);
-        app.collections.newCommande.sync();
         app.infos.annuler();
         navigator.notification.alert('La commande a été enregistrée');
     },
@@ -164,7 +163,7 @@ app.Collections.commande = Backbone.Collection.extend({
         } else {
             /* $.ajax({
                 type: 'POST',
-                url: app.config.url + '/modif/commande',
+            url: app.config.url + '/modif/commande',
                 data: {
                     table_id: app.infos.get('tableId'),
                     commande: app.collections.commande.toJSON(),
@@ -177,7 +176,7 @@ app.Collections.commande = Backbone.Collection.extend({
                 },
 
             }); */
-
+            var url = app.config.url + '/modif/commande';
             var commande = new app.Models.newCommande();
             commande.set({
                 commande: app.collections.commande.toJSON(),
@@ -186,7 +185,6 @@ app.Collections.commande = Backbone.Collection.extend({
                 url: url,
             });
             app.collections.newCommande.add(commande);
-            app.collections.newCommande.sync();
             app.infos.annuler();
             navigator.notification.alert('La commande a été modifiée');
         }
@@ -248,8 +246,8 @@ app.Collections.commande = Backbone.Collection.extend({
             statut_id: app.infos.get('statut'),
             url: url,
         });
+
         app.collections.newCommande.add(commande);
-        app.collections.newCommande.sync();
 
         navigator.notification.alert('La commande a été finalisée');
         app.infos.annuler();

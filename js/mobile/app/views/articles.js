@@ -53,7 +53,7 @@ app.Views.ArticleView = Backbone.View.extend({
         // tab pour touch click pour desktop
     },
     events: {
-        'tap a': 'addArticle',
+        'click a': 'addArticle',
         'longTap a': 'options'
     },
     options: function(e) {
