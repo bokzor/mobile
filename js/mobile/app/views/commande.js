@@ -55,7 +55,7 @@ app.Views.ArticlesCommandeView = Backbone.View.extend({
     },
     initialize: function() {
         this.model.on('change:etat', this.render, this);
-        this.model.on('click', this.toggleActive, this);
+        this.model.on('tap', this.toggleActive, this);
 
     },
     toggleActive: function() {

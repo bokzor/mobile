@@ -29,7 +29,7 @@ app.Models.user = Backbone.Model.extend({
         // on ecoute l'evenement close des slides. Lorsqu'on est sur que celui-ci est fermé.
         // On deconnecte l'utilisateur et on supprime l'application
 
-        localStorage.connectOk = false;
+        localStorage.connect = false;
         var url = app.config.url + '/logout';
         $.ajax({
             type: 'GET',
@@ -69,7 +69,7 @@ app.Models.user = Backbone.Model.extend({
                         avatar: data.avatar
                     });
 
-                    localStorage.connectOk = 'ok';
+                    localStorage.connect = 'ok';
                     localStorage.username = username;
                     localStorage.password = password
                     return true;

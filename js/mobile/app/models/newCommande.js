@@ -36,7 +36,7 @@ function launch() {
                 statut_id: model.get('statut'),
             },
             success: function() {
-                app.collections.newCommande.remove(model.get('id'));
+                app.collections.newCommande.remove(model);
             },
             error: function() {
                 console.log('Erreur lors de l\'enregistrement de la commande');

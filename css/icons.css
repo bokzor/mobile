@@ -67,3 +67,6 @@
 .icon-banknote:before {
     content: "\e60c";
 }
+.icon-cog:before {
+    content: "\e60d";
+}

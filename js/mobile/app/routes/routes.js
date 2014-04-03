@@ -7,8 +7,13 @@ app.Routes.routeur = Backbone.Router.extend({
     },
     home: function() {
         // on affiche les catégories
-        if (localStorage.connectOK == 'ok') {
+        console.log('home');
+        if (localStorage.connect == 'ok') {
             app.user.validerLogin(localStorage.username, localStorage.password);
+            app.routes.navigate('commande', {
+                trigger: true,
+                replace: true
+            });
         } else {
             app.routes.navigate('login', {
                 trigger: true,
